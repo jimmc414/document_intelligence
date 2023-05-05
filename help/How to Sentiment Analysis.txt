@@ -1,0 +1,23 @@
+This program is designed to perform sentiment analysis on text files found in the `txt_output` directory using the TextBlob library, and save the results in the `sentiments` directory.
+
+Here's a step-by-step explanation of how the program works:
+
+1. Import the necessary modules: `os`, `sys`, `nltk`, `file_utils`, and `TextBlob`.
+
+2. Define the `sentiment_analysis` function, which takes two arguments - `input_path` and `output_path`. This function reads the content from the input text file, and computes sentiment using the TextBlob library.
+
+3. Inside the `sentiment_analysis` function, open the input file and read its content.
+
+4. Create a 'TextBlob' object using the read text, which allows TextBlob to perform natural language processing on the text, including sentiment analysis.
+
+5. Compute sentiment using the `sentiment` attribute of the TextBlob object. The `sentiment` attribute returns a tuple with the polarity and subjectivity values of the text.
+
+6. Open the output file and write the resulting polarity and subjectivity values in it.
+
+7. In the `if __name__ == "__main__":` block, set the input and output directory paths.
+
+8. Loop through all the files in the input directory. If a file ends with ".txt", call the `sentiment_analysis` function with the input file path and the path for the output file, with the suffix "_sentiment.txt".
+
+9. After running sentiment analysis on a file, print the progress message on the console.
+
+The output files will be saved in the `sentiments` directory, with each output file containing the polarity and subjectivity scores for the corresponding input text file. The polarity score is a float that ranges from -1 to 1, where -1 indicates negative sentiment, 0 indicates neutral sentiment, and 1 indicates positive sentiment. The subjectivity score is a float that ranges from 0 to 1, where 0 represents objectivity (i.e., more factual) and 1 represents subjectivity (i.e., more opinionated or personal feelings).

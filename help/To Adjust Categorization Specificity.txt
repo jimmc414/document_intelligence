@@ -1,0 +1,21 @@
+To adjust the specificity when categorizing the .txt files, you can tweak different parameters and aspects of the program. Here are some suggestions:
+
+1. **Number of clusters**: Increase the number of clusters by modifying the `optimal_clusters()` function in the `similarity_clustering.py` module. A higher number of clusters might produce more specific categories.
+
+```python
+def optimal_clusters(X):
+    # Function to determine the optimal number of clusters
+    return 4  # Increase the number to generate more specific categories.
+```
+
+Alternatively, implement a method like the Elbow Method or Silhouette Method to automatically find an optimal number of clusters based on your data.
+
+2. **Feature Extraction**: Adjust the parameters of the `vectorize_text()` function in the `feature_extraction.py` module. For example, you can assign different weights to word vectors or add more features such as Tf-idf or Latent Semantic Analysis (LSA).
+
+3. **Text Preprocessing**: Modify the `preprocess_text()` function in the `text_preprocessing.py` module to see the effects of different text preprocessing methods, such as altering tokenization or incorporating additional steps like bigrams, trigrams, or more fine-grained filtering.
+
+4. **Clustering Algorithm**: Switch the clustering algorithm in the `similarity_clustering.py` module by changing the `cluster_algorithm` object. Instead of K-Means, try other clustering algorithms such as DBSCAN, Agglomerative Clustering, or Spectral Clustering, etc. These algorithms possess different properties that may provide better specificity.
+
+5. **Similarity Measure**: If you decide to use a different clustering algorithm, you may need to employ another similarity measure than the cosine similarity used in the K-Means algorithm. To change the similarity measure, alter the `determine_best_similarity_measure()` function in the `similarity_clustering.py` module.
+
+Remember that while increasing the specificity in the categorization might provide sharper distinctions between categories, it may also lead to overfitting, causing the model to perform poorly on new, unseen data. Therefore, ensure you strike a balance between specificity and generalizability.

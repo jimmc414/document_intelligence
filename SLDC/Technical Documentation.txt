@@ -1,0 +1,66 @@
+# AutoIndex: PDF Text Analysis and Processing
+
+AutoIndex is a project that automates the scanning, processing, and analysis of a large number of documents. The purpose of this system is to extract and identify relevant information from various PDF files (searchable or non-searchable), categorize the documents based on their content similarity, and perform computations such as sentiment analysis and text extraction.
+
+## Technical Documentation
+
+The following sections describe the technical details and implementation of the different components of the AutoIndex project.
+
+### 1. Converting PDFs to Text
+
+The `autoextractpdf2text.py` script is responsible for converting searchable PDF files to text files, which will be used by the other components of the system. The script makes use of the `pymupdf` library to parse and extract the text from the PDF files.
+
+### 2. OCR Processing
+
+The `autoocr_parallel.py` script processes non-searchable PDF files using Optical Character Recognition (OCR) to identify and extract the text. It utilizes the `pypdf4`, `pdf2image`, and `pytesseract` libraries to convert PDFs into images and then extract the text from those images.
+
+### 3. Named Entity Recognition
+
+The `autoner.py` script extracts proper names, case numbers, account numbers, and legal terms from the text files using the `spacy` library for Natural Language Processing (NLP). This script helps identify the important entities present in the documents to simplify the subsequent analysis.
+
+### 4. Sentiment Analysis
+
+The `autosentiment.py` script analyzes the sentiment of the text in each document using the `textblob` library. It calculates the polarity and subjectivity of the text and stores the results in corresponding output files.
+
+### 5. Text Summarization
+
+The `autosummarize.py` script generates summaries of the text files using the `sumy` library. It uses the Extractive Summarization technique and returns the most important and representative sentences from the original text.
+
+### 6. Pegasus Summarization
+
+The `pegasus_summarize.py` script computes a more in-depth summarization using the Pegasus model from the `transformers` library by Hugging Face. The model generates an abstractive summary that is more coherent and concise.
+
+### 7. Text Processing and Feature Extraction
+
+The `text_preprocessing.py` script tokenizes, lowercases, removes punctuation, removes stopwords, and lemmatizes the text using `nltk` library. The `feature_extraction.py` script vectorizes the text using a pre-trained Word2Vec model from the `gensim` library.
+
+### 8. Clustering
+
+The `similarity_clustering.py` script performs clustering of the documents using the KMeans algorithm available in the `scikit-learn` library. It categorizes the documents based on their content similarity utilizing the extracted features from the preprocessed text.
+
+### 9. Info Extraction
+
+The `info_extraction.py` script extracts specific information such as case numbers, plaintiff names, and addresses using the `spacy` library.
+
+### 10. Main Workflow
+
+The `main.py` script serves as the main entry point for the entire process. It sequentially calls the individual scripts detailed above to perform actions such as converting PDFs to text, OCR processing, named entity recognition, sentiment analysis, text extraction, summarization, Pegasus summarization, and clustering.
+
+## Required Libraries and Setup
+
+Following are the required libraries that need to be installed:
+
+- `pymupdf`
+- `pdf2image`
+- `pytesseract`
+- `nltk`
+- `spacy`
+- `gensim`
+- `textblob`
+- `sumy`
+- `scikit-learn`
+- `transformers`
+
+To install these libraries, run `pip install pymupdf pdf2image pytesseract nltk spacy gensim textblob sumy scikit-learn transformers`.
+
+Also, download the necessary language model for Spacy using `python -m spacy download en_core_web_sm`.
