@@ -34,7 +34,7 @@ def ocr_pdf(pdf_path):
     result = []
     
     # modify the whitelist to include the $ symbol
-    custom_config = r'-c tessedit_char_whitelist=0123456789$ --psm 6 --oem 1'
+    custom_config = r'–psm 6 --oem 1'
     for image in images:
         text = pytesseract.image_to_string(image, config=custom_config)
         result.append(text)
