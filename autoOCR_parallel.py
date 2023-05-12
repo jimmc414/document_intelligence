@@ -25,22 +25,25 @@ def is_searchable(pdf_path):
     return False
 
 def ocr_pdf(pdf_path):
-    print(f"{time.ctime()}: Starting OCR on {os.path.basename(pdf_path)}")
-    output_folder = r"C:\python\autoindex\txt_output"
-    output_filename = os.path.splitext(os.path.basename(pdf_path))[0] + '_OCR.txt'
+    print(f"{time.ctime()}: starting OCR {os.path.basename(pdf_path)}")
+    output_folder = r"c:\python\autoindex\txt_output"
+    output_filename = os.path.splitext(os.path.basename(pdf_path))[0] + "_ocr.txt"
     output_path = os.path.join(output_folder, output_filename)
-    images = convert_from_path(pdf_path)
     
+    images = convert_from_path(pdf_path)
     result = []
+    
+    # modify the whitelist to include the $ symbol
+    custom_config = r'-c tessedit_char_whitelist=0123456789$ --psm 6 --oem 1'
     for image in images:
-        text = pytesseract.image_to_string(image)
+        text = pytesseract.image_to_string(image, config=custom_config)
         result.append(text)
     
     with open(output_path, 'w', encoding='utf-8') as outfile:
         for line in result:
             outfile.write(line)
-    
-    print(f"{time.ctime()}: Finished OCR on {os.path.basename(pdf_path)}")
+
+    print(f"{time.ctime()}: finished OCR {os.path.basename(pdf_path)}")
 
 class TimeoutException(Exception):
     pass

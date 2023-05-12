@@ -45,6 +45,9 @@ def main():
     subprocess.call(['python', 'autosentiment.py'])
     print("Performing Summarization...")
     subprocess.call(['python', 'autosummarize.py'])
+    print("Performing Classification...")
+    subprocess.call(['python', 'categorize_kmeans.py'])
+    
 
 if __name__ == "__main__":
     main()

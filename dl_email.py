@@ -12,7 +12,7 @@ cred_file = 'credentials.json'
 to_criteria = '*'
 from_criteria = 'jimmc414@gmail.com'
 subject_criteria = '*'
-start_date = '2023/05/01'
+start_date = '2023/05/08'
 end_date = '2023/06/01'
 
 # Output directory
