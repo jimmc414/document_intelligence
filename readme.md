@@ -10,10 +10,6 @@ This project aims to automatically digest unstructured documents, phone calls, o
 
 The project consists of several Python scripts that accomplish different tasks, including OCR processing, named entity recognition, similarity clustering, sentiment analysis, and text summarization.
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
 ### Prerequisites
 
 - Python 3.x
