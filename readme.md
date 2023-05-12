@@ -109,3 +109,151 @@ After running the `main.py` script, you will find the following output in their 
 Copyright (c) [2023] [James M. McMillan III]
 
 ---
+
+**Program:** `audioextracttext.py`  
+**Called From:** Main Script  
+**Description:** This program transcribes audio files in a specified directory to text files using the OpenAI `whisper` ASR model.
+
+---
+
+**Program:** `autoextract.py`  
+**Called From:** Main Script  
+**Description:** This program extracts specific patterns (e.g., Social Security numbers, Credit Card numbers, names, driver license) from text files in a specified directory and saves them into separate CSV files.
+
+---
+
+**Program:** `autoextractpdf2text.py`  
+**Called From:** Main Script  
+**Description:** This program extracts text from searchable PDF files in a specified directory and saves them as text files in another directory.
+
+---
+
+**Program:** `autoocr_parallel.py`  
+**Called From:** Main Script  
+**Description:** This program converts non-searchable PDF files into searchable text using OCR (Optical Character Recognition) with pytesseract and multithreading for parallel processing.
+
+---
+
+**Program:** `autokvextract.py`  
+**Called From:** Main Script  
+**Description:** This program extracts key-value pairs from text files in a given directory and writes them to new text files.
+
+---
+
+**Program:** `autoner.py`  
+**Called From:** Main Script  
+**Description:** This program performs Named Entity Recognition (NER) using spaCy on text files in a specified directory and writes the results to text files.
+
+---
+
+**Program:** `autosentiment.py`  
+**Called From:** Main Script  
+**Description:** This program performs sentiment analysis on text files in a specified directory using TextBlob and writes the results to text files.
+
+---
+
+**Program:** `autosummarize.py`  
+**Called From:** Main Script  
+**Description:** This program generates summaries for text files in a specified directory using sumy library and writes the summaries to text files.
+
+---
+
+**Program:** `convert_audio.py`  
+**Called From:** N/A, standalone script  
+**Description:** This program converts audio files from one format (e.g., AMR) to another format (e.g., WAV) in a specified directory.
+
+---
+
+**Program:** `dl_email.py`  
+**Called From:** Main Script  
+**Description:** This program downloads emails from a Gmail account based on search criteria and saves them as text files in a specified directory.
+
+---
+
+**Program:** `feature_extraction.py`  
+**Called From:** Main Script  
+**Description:** This program vectorizes text using pre-trained word2vec models (in this case, Google's pre-trained Word2Vec model).
+
+---
+
+**Program:** `file_utils.py`  
+**Called From:** Other scripts  
+**Description:** This program contains utility functions like reading text files and getting all the TXT files from a given directory.
+
+---
+
+**Program:** `info_extraction.py`  
+**Called From:** Main Script   
+**Description:** This program extracts specific information (case number, plaintiff, and address) from text files using regex and Named Entity Recognition (NER).
+
+---
+
+**Program:** `main.py`  
+**Called From:** N/A, main script to run the application  
+**Description:** This script coordinates the execution of all other scripts in the correct order, such as text extraction, entity extraction, OCR, NER, and others.
+
+---
+
+**Program:** `similarity_clustering.py`  
+**Called From:** Main Script  
+**Description:** This program performs similarity-based clustering on text files using TF-IDF and K-means clustering, categorizes files based on similarity, and identifies the most frequent phrase in each cluster.
+
+---
+
+**Program:** `text_preprocessing.py`  
+**Called From:** Main Script  
+**Description:** This program preprocesses text by performing tokenization, lowercasing, punctuation removal, stopword removal, and lemmatization.
+
+1. Set up the environment:
+   a. Install Python, if not already installed: https://www.python.org/downloads/.
+   b. Install an Integrated Development Environment (IDE) (optional, but recommended): Some popular options are VSCode, PyCharm, and Jupyter Notebook.
+
+2. Install the necessary libraries:
+   a. Install Natural Language Toolkit (nltk) for text preprocessing: `pip install nltk`
+   b. Install scikit-learn for machine learning algorithms: `pip install scikit-learn`
+   c. Install the Gensim library for working with pre-trained word embeddings: `pip install gensim`
+   d. Optional: Install any other desired NLP libraries like spaCy, TextBlob, or BERT.
+
+3. Define the file scanning and reading functions:
+   a. Import the necessary modules: os, nltk, glob, and re.
+   b. Write a function to read the contents of a file.
+   c. Write a function to scan the target directory for txt files.
+
+4. Preprocessing:
+   a. Import nltk functions: word_tokenize, stopwords, and WordNetLemmatizer.
+   b. Write a function to clean and preprocess the text data:
+      - Tokenize the text
+      - Convert text to lowercase
+      - Remove punctuation and special characters
+      - Remove stopwords
+      - Lemmatize words
+   c. Preprocess each text file's content and save in a list.
+
+5. Feature extraction:
+   a. Use Gensim's Word2Vec or other pretrained word embeddings like GloVe or fastText to represent words as vectors.
+   b. Write a function to vectorize text data using the pre-trained word embeddings.
+   c. Transform the preprocessed text data into feature vectors.
+
+6. Determine the best similarity measure:
+   a. Study similarity measures like: cosine, Jaccard, Euclidean, or Pearson.
+   b. Choose the most appropriate similarity measure for this task.
+
+7. Cluster analysis:
+   a. Decide on the clustering algorithm that best suits the project requirements (e.g., K-Means, DBSCAN, Agglomerative Clustering, etc.).
+   b. Write a function that automatically determines the optimal number of clusters.
+   c. Implement the clustering algorithm, considering the optimal number of clusters.
+
+8. Categorize the txt files based on similarity:
+   a. Assign each text file to its corresponding cluster.
+   b. Save the clustering results into a convenient format (dictionary, CSV, etc.).
+
+9. Test the program
+   a. Create a test directory.
+   b. Add some txt files to the test directory.
+   c. Run the program on this test directory.
+   d. Evaluate the results and improve the model as needed.
+
+10. Optional: Implement a user interface
+    a. Create a GUI or a web interface for users to easily use the program.
+	
+	
