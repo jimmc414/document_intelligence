@@ -2,7 +2,7 @@
 
 # AutoIndex: PDF Text Analysis and Processing
 
-AutoIndex is a Proof of Concept designed to automatically process PDF files. It extracts relevant information, analyzes sentiment, clusters, and categorizes documents based on similarity, generates summaries, and extracts text.
+AutoIndex is a Document Intelligence Proof of Concept designed to automatically process PDF files. It extracts relevant information, analyzes sentiment, clusters, and categorizes documents based on similarity, generates summaries, and extracts text.
 
 This information will be used to automatically assign the correct account number in an external system.
 
@@ -17,17 +17,17 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 - Python 3.x
-- PyMuPDF
-- pdf2image
-- PyTesseract
-- NLTK
-- Spacy
-- Gensim
-- TextBlob
-- Sumy
-- Scikit-learn
-- Transformers (Hugging Face)
-- OpenAI API (For Audio transcription)
+- PyMuPDF: A Python library that enables you to access and manipulate PDF files, including text extraction, metadata retrieval, and layout analysis.
+- pdf2image: A Python library that converts PDF files into images, allowing for easier processing and analysis of non-textual content in the files.
+- PyTesseract: A Python wrapper for the Tesseract OCR engine, which enables Optical Character Recognition (OCR) capabilities for converting scanned images and PDFs into text.
+- NLTK: The Natural Language Toolkit (NLTK) is a Python library for working with human language data, providing tools for text processing, tokenization, parsing, and classification.
+- Spacy: A fast and modern Python library for natural language processing (NLP), offering pretrained models and extensive functionality for NLP tasks such as text tokenization, part-of-speech tagging, and named entity recognition.
+- Gensim: A Python library specialized in topic modeling and document similarity analysis, which allows for efficient large-scale text processing using algorithms like Word2Vec, FastText, and Latent Semantic Analysis.
+- TextBlob: A simple Python library for processing textual data, offering basic NLP features such as part-of-speech tagging, noun phrase extraction, sentiment analysis, and translation.
+- Sumy: A Python library that provides functionality to summarize texts using various algorithms, extracting key information from long articles and documents.
+- Scikit-learn: A popular Python library for machine learning and data science, offering tools for preprocessing data, training algorithms, and evaluating model performance.
+- Transformers (Hugging Face): A Python library for state-of-the-art natural language processing, based on transformer model architectures like BERT and GPT, and offering pre-trained models for tasks like text generation, question-answering, and sentiment analysis.
+- OpenAI API - Whisper: An API service provided by OpenAI that offers an automatic speech recognition (ASR) system, Whisper, for transcribing spoken language from audio data into written text with high accuracy.
 
 Use pip to install the required packages in your Python environment:
 

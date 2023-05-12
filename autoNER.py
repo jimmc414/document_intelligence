@@ -1,4 +1,5 @@
 import spacy
+from spacy.pipeline import EntityRuler
 import os
 import re
 from spacy.matcher import Matcher
@@ -23,11 +24,27 @@ def extract_legal_terms(doc, legal_terms):
 
     matches = matcher(doc)
     terms = [doc[start:end].text for match_id, start, end in matches]
-    
+
     return terms
 
 # Load the language model
 nlp = spacy.load("en_core_web_sm")
+
+# Custom pattern for cases like "Fname M Lname"
+custom_name_pattern = [
+    {
+        "label": "PERSON",
+        "pattern": [
+            {"POS": "PROPN"},
+            {"ORTH": ".", "OP": "?"},
+            {"POS": "PROPN"},
+        ]
+    }
+]
+
+# Add EntityRuler to the pipeline
+ruler = nlp.add_pipe("entity_ruler")
+ruler.add_patterns(custom_name_pattern)
 
 # Set the directory paths
 input_dir = "C:\\python\\autoindex\\txt_output"

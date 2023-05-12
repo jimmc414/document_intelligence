@@ -29,36 +29,22 @@ def main():
             processed_texts.append(vector)
             file_names.append(os.path.basename(file_path))
 
-    specific_phrases = ["REQUEST TO FILE FOREIGN JUDGMENT", "NOTICE OF SATISFACTION OF LIEN", "REQUEST FOR SUMMONS", "Resume"]
-    cluster_labels, most_freq_phrases = similarity_clustering.cluster_analysis(original_texts, specific_phrases)
+    # Call categorize_files from similarity_clustering
+    similarity_clustering.categorize_files(directory_path, processed_texts, file_names, original_texts)
 
-    if cluster_labels is None and most_freq_phrases is None:
-        print("Skipping further processing as no specific phrases found.")
-    else:
-        results = {}
-        for label, file_name in zip(cluster_labels, file_names):
-            if label not in results:
-                results[label] = []
-            results[label].append(file_name)
-
-        print("Categorized txt files based on similarity:")
-        for category, files in results.items():
-            print(f"Category {category} (Most frequent phrase: '{most_freq_phrases[category]}'):")
-            for file_name in files:
-                print(f" {file_name}")
-                if most_freq_phrases[category].lower() == "request to file foreign judgment":
-                    file_path = os.path.join(directory_path, file_name)
-                    content = file_utils.read_file(file_path)
-                    
-                    extracted_values = info_extraction.extract_requested_info(content)
-                    for key, value in extracted_values.items():
-                        print(f"  {key}: {value}")
-                        
-    subprocess.call(['python', 'autoner.py'])  # Added this line to call autoner.py
+    subprocess.call(['python', 'audioExtractText.py'])  
+    print("Transcribing Audio Files to Text...")
+    subprocess.call(['python', 'dl_email.py'])
+    print("Extracting emails to Text")
+    subprocess.call(['python', 'autoextract.py'])  
+    print("Extracting Named Entities...")
+    subprocess.call(['python', 'autokvextract.py'])  
+    print("Extracting Key / Value Pairs...")
+    subprocess.call(['python', 'autoner.py'])  
     print("Performing Sentiment Analysis...")
     subprocess.call(['python', 'autosentiment.py'])
     print("Performing Summarization...")
     subprocess.call(['python', 'autosummarize.py'])
-    
+
 if __name__ == "__main__":
     main()
