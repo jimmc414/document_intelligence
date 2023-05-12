@@ -91,6 +91,18 @@ The script will run sequentially in the following order:
 4. `autosentiment.py`: Generates sentiment analysis for text files
 5. `autosummarize.py`: Computes text summarization for text files
 6. `audioExtractText.py`: Transcribes audio files to text at rate of $.006/min (rounded to nearest second). Requires OpenAI API key
+7. `dl_email.py`: Download gmail that matches filters
+		A. You should create a project in Google Developers Console and use OAuth2 to authenticate your Python script to access Google APIs securely. To do this, follow these steps:
+
+			1. Go to https://console.developers.google.com/ and log in with your Gmail account.
+			2. Create a new project, and enable Gmail API for that project.
+			3. Create OAuth2 credentials (Client ID and Client Secret) and download the `credentials.json` file.
+
+Install the required libraries:
+
+```bash
+pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client
+```
 
 ### Output
 
