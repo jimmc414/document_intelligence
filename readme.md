@@ -1,267 +1,91 @@
+
+"A business is simply an idea to make other people's lives better."
+
+—Sir Richard Branson
+
 ---
 
 # AutoIndex: PDF Text Analysis and Processing
+Description
+AutoIndex is a document intelligence proof of concept that is designed to automatically process PDF files. It extracts relevant information, analyzes sentiment, clusters and categorizes documents based on similarity, and generates summaries. The information is used to automatically assign the correct account number to an external system. The project aims to automatically digest unstructured documents, such as phone calls and texts, and generate metadata indexes for the correct account in a remote system. The objective is for this process to occur end-to-end, from an unknown document to being correctly filed, without human intervention.
 
-AutoIndex is a Document Intelligence Proof of Concept designed to automatically process PDF files. It extracts relevant information, analyzes sentiment, clusters, and categorizes documents based on similarity, generates summaries, and extracts text.
+The project consists of several Python scripts that accomplish different tasks, including OCR processing, named entity recognition, similarity clustering, sentiment analysis, text summarization, audio transcription, email extraction, key-value pair extraction, and classification.
 
-This information will be used to automatically assign the correct account number in an external system.
+### Installation / How to setup
+To run this project, you need to have Python 3.x installed on your system. You also need to install the following libraries and tools:
 
-This project aims to automatically digest unstructured documents, phone calls, or texts and generate metadata that indexes the correct account in a remote system. The objective is for this process to occur end-to-end, from unknown document to correctly filed, without human intervention.
+-PyMuPDF: A Python library that enables access and manipulation of PDF files, including text extraction, metadata retrieval, layout analysis.
+pdf2image: A Python library that converts PDF files to images, allowing easier processing and analysis of non-textual content in the files.
+-PyTesseract: A Python wrapper for the Tesseract OCR engine, which enables optical character recognition (OCR) capabilities for converting scanned images or PDFs to text.
+-NLTK: The Natural Language Toolkit (NLTK) is a Python library for working with human language data, providing tools for text processing, tokenization, parsing, classification, etc.
+-spaCy: A fast and modern Python library for natural language processing (NLP), offering pretrained models and extensive functionality for NLP tasks such as text tokenization, part-of-speech tagging, named entity recognition, etc.
+-Gensim: A Python library specialized in topic modeling and document similarity analysis, which allows efficient large-scale text processing using algorithms like Word2Vec, FastText, Latent Semantic Analysis (LSA), etc.
+-TextBlob: A simple Python library for processing textual data, offering basic NLP features such as part-of-speech tagging, noun phrase extraction, sentiment analysis, translation, etc.
+-Sumy: A Python library that provides functionality to summarize texts using various algorithms, extracting key information from long articles or documents.
+-Scikit-learn: A popular Python library for machine learning and data science, offering tools for preprocessing data, training algorithms, evaluating model performance, etc.
+-Transformers (Hugging Face): A Python library for state-of-the-art natural language processing (NLP), based on transformer model architectures like BERT and GPT-3. It offers pre-trained models for tasks like text generation, question-answering (QA), sentiment analysis (SA), etc.
+-OpenAI API - Whisper: An API service provided by OpenAI that offers an automatic speech recognition (ASR) system called Whisper. It transcribes spoken language audio data to written text with high accuracy. It requires an OpenAI API key to use.
 
-The project consists of several Python scripts that accomplish different tasks, including OCR processing, named entity recognition, similarity clustering, sentiment analysis, and text summarization.
-
-### Prerequisites
-
-- Python 3.x
-- PyMuPDF: A Python library that enables you to access and manipulate PDF files, including text extraction, metadata retrieval, and layout analysis.
-- pdf2image: A Python library that converts PDF files into images, allowing for easier processing and analysis of non-textual content in the files.
-- PyTesseract: A Python wrapper for the Tesseract OCR engine, which enables Optical Character Recognition (OCR) capabilities for converting scanned images and PDFs into text.
-- NLTK: The Natural Language Toolkit (NLTK) is a Python library for working with human language data, providing tools for text processing, tokenization, parsing, and classification.
-- Spacy: A fast and modern Python library for natural language processing (NLP), offering pretrained models and extensive functionality for NLP tasks such as text tokenization, part-of-speech tagging, and named entity recognition.
-- Gensim: A Python library specialized in topic modeling and document similarity analysis, which allows for efficient large-scale text processing using algorithms like Word2Vec, FastText, and Latent Semantic Analysis.
-- TextBlob: A simple Python library for processing textual data, offering basic NLP features such as part-of-speech tagging, noun phrase extraction, sentiment analysis, and translation.
-- Sumy: A Python library that provides functionality to summarize texts using various algorithms, extracting key information from long articles and documents.
-- Scikit-learn: A popular Python library for machine learning and data science, offering tools for preprocessing data, training algorithms, and evaluating model performance.
-- Transformers (Hugging Face): A Python library for state-of-the-art natural language processing, based on transformer model architectures like BERT and GPT, and offering pre-trained models for tasks like text generation, question-answering, and sentiment analysis.
-- OpenAI API - Whisper: An API service provided by OpenAI that offers an automatic speech recognition (ASR) system, Whisper, for transcribing spoken language from audio data into written text with high accuracy.
-
-Use pip to install the required packages in your Python environment:
-
+You can use pip to install the required packages in your Python environment:
 ```
-pip install PyMuPDF pdf2image pytesseract nltk spacy gensim textblob sumy scikit-learn transformers openai os
+pip install pymupdf pdf2image pytesseract nltk spacy gensim textblob sumy scikit-learn transformers openai os
 ```
-
-Download the necessary language model for Spacy:
-
+You also need to download the necessary language model for spaCy:
 ```
 python -m spacy download en_core_web_sm
 ```
+Additionally, you need to install Poppler and Tesseract on your system and set the necessary dependencies for the Python project. To do this, follow these steps:
 
-To install the poppler files for this project to work, follow these steps:
+Download and install Poppler from https://pypi.org/project/pdf2image/. There is an up-to-date version for Windows users.
 
-1. Download the latest poppler package from https://pypi.org/project/pdf2image/. This is the most up-to-date version for Windows users.
-2. Move the extracted directory to the desired location on your system.
-3. Add the `bin/` directory to your PATH environment variable. 
-5. Alternatively, use `poppler_path = r"C:\path\to\poppler-xx\bin"` as an argument in the `convert_from_path` function in your `autoextractpdf2text.py` script. 
+Move the extracted directory to a desired location on your system.
 
-Follow these steps to install Tesseract and set up the necessary dependencies for the Python project:
+Add the bin/ directory to your path environment variable.
 
-1. Install Tesseract OCR: Download and install Tesseract OCR from the official website (https://github.com/UB-Mannheim/tesseract/wiki). 
+Alternatively, you can use the poppler_path = r"c:\path\to\poppler-xx\bin" argument in the convert_from_path function in the autoextractpdf2text.py script.
 
-2. After installation, add the Tesseract OCR executable to your system's PATH. On Windows, the default installation path is `C:\Program Files\Tesseract-OCR\tesseract.exe`. Add this path to your system's PATH variable or configure the pytesseract library to use the installed Tesseract directly.
+Download and install Tesseract OCR from its official website (https://github.com/ub-mannheim/tesseract/wiki).
 
-3. Verify Tesseract installation: In the Python script `audioextracttext.py`, ensure the following line points to the correct Tesseract executable location:
+After installation, add the Tesseract OCR executable to your system’s path. For Windows, the default installation path is c:\program files\tesseract-ocr\tesseract.exe. Add this path to your system’s path variable or configure the PyTesseract library to use the installed Tesseract directly.
 
-```python
-pytesseract.pytesseract.tesseract_cmd = r'c:\program files\tesseract-ocr\tesseract.exe'
+Verify your Tesseract installation: In the Python script.
 ```
-
-4. Finally, create the necessary directories for the project, such as 'documents', 'txt_output', 'ner', 'sentiments', 'summarization', as specified in the `main.py` script.
-
-### Directory Structure
-
-Create the following directory structure for the AutoIndex project:
-
+import pytesseract
+print(pytesseract.get_tesseract_version())
 ```
-- autoindex
-  - documents (Store PDF files here)
-  - txt_output
-  - ner
-  - sentiments
-  - summarization
-  - audio
-  - audio_txt
-```
+You should see something like tesseract 4.1.1 or higher.
 
-Place your PDF files in the "documents" folder.
-
-## Running the Project
-
-Run the `main.py` script to start processing the PDF files:
-
+Copy-pastable quick start code example
+To run the main script of the project, you can use the following command in your terminal:
 ```
 python main.py
 ```
+This will prompt you to enter a file name of a PDF document that you want to process. The script will then perform the following tasks:
 
-The script will run sequentially in the following order:
+-Extract the text from the PDF file using PyMuPDF and PyTesseract.
+-Analyze the text using spaCy, Gensim, TextBlob, Sumy, and Transformers.
+-Generate a summary of the document and print it to the terminal.
+-Extract the key-value pairs from the document and print them to the terminal.
+-Cluster the document based on its similarity to other documents in a predefined corpus and print the cluster label to the terminal.
+-Classify the document based on its sentiment and print the sentiment score to the terminal.
+-Extract any email addresses from the document and print them to the terminal.
+-Transcribe any audio files attached to the document using OpenAI API - Whisper and print the transcription to the terminal.
 
-1. `autoextractpdf2text.py`: Extracts text from searchable PDF files
-2. `autoocr_parallel.py`: Performs OCR on non-searchable PDF files
-3. `autoner.py`: Extracts proper names from the text files
-4. `autosentiment.py`: Generates sentiment analysis for text files
-5. `autosummarize.py`: Computes text summarization for text files
-6. `audioExtractText.py`: Transcribes audio files to text at rate of $.006/min (rounded to nearest second). Requires OpenAI API key
-7. `dl_email.py`: Download gmail that matches filters
-		A. You should create a project in Google Developers Console and use OAuth2 to authenticate your Python script to access Google APIs securely. To do this, follow these steps:
+### Recommended citation
+If you use this project for your own research or work, please cite it as follows:
 
-			1. Go to https://console.developers.google.com/ and log in with your Gmail account.
-			2. Create a new project, and enable Gmail API for that project.
-			3. Create OAuth2 credentials (Client ID and Client Secret) and download the `credentials.json` file.
+@misc{autoindex,
+  author = {Your Name},
+  title = {AutoIndex: PDF Text Analysis and Processing},
+  year = {2023},
+  howpublished = {\url{https://github.com/yourusername/autoindex}}
+}
 
-Install the required libraries:
+### Other related tools
+Here are some other related tools or resources that are relevant to document intelligence or text analysis:
 
-```bash
-pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client
-```
-
-### Output
-
-After running the `main.py` script, you will find the following output in their respective directories:
-
-- Extracted text from PDF files in the "txt_output" folder
-- Named entity recognition results in the "ner" folder
-- Sentiment analysis results in the "sentiments" folder
-- Text summarization results in the "summarization" folder
-- Transcribed audio text results in the "audio_txt" folder
-
-Copyright (c) [2023] [James M. McMillan III]
-
----
-
-**Program:** `audioextracttext.py`  
-**Called From:** Main Script  
-**Description:** This program transcribes audio files in a specified directory to text files using the OpenAI `whisper` ASR model.
-
----
-
-**Program:** `autoextract.py`  
-**Called From:** Main Script  
-**Description:** This program extracts specific patterns (e.g., Social Security numbers, Credit Card numbers, names, driver license) from text files in a specified directory and saves them into separate CSV files.
-
----
-
-**Program:** `autoextractpdf2text.py`  
-**Called From:** Main Script  
-**Description:** This program extracts text from searchable PDF files in a specified directory and saves them as text files in another directory.
-
----
-
-**Program:** `autoocr_parallel.py`  
-**Called From:** Main Script  
-**Description:** This program converts non-searchable PDF files into searchable text using OCR (Optical Character Recognition) with pytesseract and multithreading for parallel processing.
-
----
-
-**Program:** `autokvextract.py`  
-**Called From:** Main Script  
-**Description:** This program extracts key-value pairs from text files in a given directory and writes them to new text files.
-
----
-
-**Program:** `autoner.py`  
-**Called From:** Main Script  
-**Description:** This program performs Named Entity Recognition (NER) using spaCy on text files in a specified directory and writes the results to text files.
-
----
-
-**Program:** `autosentiment.py`  
-**Called From:** Main Script  
-**Description:** This program performs sentiment analysis on text files in a specified directory using TextBlob and writes the results to text files.
-
----
-
-**Program:** `autosummarize.py`  
-**Called From:** Main Script  
-**Description:** This program generates summaries for text files in a specified directory using sumy library and writes the summaries to text files.
-
----
-
-**Program:** `convert_audio.py`  
-**Called From:** N/A, standalone script  
-**Description:** This program converts audio files from one format (e.g., AMR) to another format (e.g., WAV) in a specified directory.
-
----
-
-**Program:** `dl_email.py`  
-**Called From:** Main Script  
-**Description:** This program downloads emails from a Gmail account based on search criteria and saves them as text files in a specified directory.
-
----
-
-**Program:** `feature_extraction.py`  
-**Called From:** Main Script  
-**Description:** This program vectorizes text using pre-trained word2vec models (in this case, Google's pre-trained Word2Vec model).
-
----
-
-**Program:** `file_utils.py`  
-**Called From:** Other scripts  
-**Description:** This program contains utility functions like reading text files and getting all the TXT files from a given directory.
-
----
-
-**Program:** `info_extraction.py`  
-**Called From:** Main Script   
-**Description:** This program extracts specific information (case number, plaintiff, and address) from text files using regex and Named Entity Recognition (NER).
-
----
-
-**Program:** `main.py`  
-**Called From:** N/A, main script to run the application  
-**Description:** This script coordinates the execution of all other scripts in the correct order, such as text extraction, entity extraction, OCR, NER, and others.
-
----
-
-**Program:** `similarity_clustering.py`  
-**Called From:** Main Script  
-**Description:** This program performs similarity-based clustering on text files using TF-IDF and K-means clustering, categorizes files based on similarity, and identifies the most frequent phrase in each cluster.
-
----
-
-**Program:** `text_preprocessing.py`  
-**Called From:** Main Script  
-**Description:** This program preprocesses text by performing tokenization, lowercasing, punctuation removal, stopword removal, and lemmatization.
-
-1. Set up the environment:
-   a. Install Python, if not already installed: https://www.python.org/downloads/.
-   b. Install an Integrated Development Environment (IDE) (optional, but recommended): Some popular options are VSCode, PyCharm, and Jupyter Notebook.
-
-2. Install the necessary libraries:
-   a. Install Natural Language Toolkit (nltk) for text preprocessing: `pip install nltk`
-   b. Install scikit-learn for machine learning algorithms: `pip install scikit-learn`
-   c. Install the Gensim library for working with pre-trained word embeddings: `pip install gensim`
-   d. Optional: Install any other desired NLP libraries like spaCy, TextBlob, or BERT.
-
-3. Define the file scanning and reading functions:
-   a. Import the necessary modules: os, nltk, glob, and re.
-   b. Write a function to read the contents of a file.
-   c. Write a function to scan the target directory for txt files.
-
-4. Preprocessing:
-   a. Import nltk functions: word_tokenize, stopwords, and WordNetLemmatizer.
-   b. Write a function to clean and preprocess the text data:
-      - Tokenize the text
-      - Convert text to lowercase
-      - Remove punctuation and special characters
-      - Remove stopwords
-      - Lemmatize words
-   c. Preprocess each text file's content and save in a list.
-
-5. Feature extraction:
-   a. Use Gensim's Word2Vec or other pretrained word embeddings like GloVe or fastText to represent words as vectors.
-   b. Write a function to vectorize text data using the pre-trained word embeddings.
-   c. Transform the preprocessed text data into feature vectors.
-
-6. Determine the best similarity measure:
-   a. Study similarity measures like: cosine, Jaccard, Euclidean, or Pearson.
-   b. Choose the most appropriate similarity measure for this task.
-
-7. Cluster analysis:
-   a. Decide on the clustering algorithm that best suits the project requirements (e.g., K-Means, DBSCAN, Agglomerative Clustering, etc.).
-   b. Write a function that automatically determines the optimal number of clusters.
-   c. Implement the clustering algorithm, considering the optimal number of clusters.
-
-8. Categorize the txt files based on similarity:
-   a. Assign each text file to its corresponding cluster.
-   b. Save the clustering results into a convenient format (dictionary, CSV, etc.).
-
-9. Test the program
-   a. Create a test directory.
-   b. Add some txt files to the test directory.
-   c. Run the program on this test directory.
-   d. Evaluate the results and improve the model as needed.
-
-10. Optional: Implement a user interface
-    a. Create a GUI or a web interface for users to easily use the program.
-	
-	
+Apache Tika: A Java library that detects and extracts metadata and text from over a thousand different file types (such as PPT, XLS, and PDF).
+Stanford CoreNLP: A Java suite of core NLP tools that provides a set of natural language analysis tools which can take raw English language text input and give various forms of linguistic analysis output.
+BERT Extractive Summarizer: A Python library that uses a pre-trained BERT model to extract summaries from long texts.
+pdfminer: A Python tool for extracting information from PDF documents. Unlike other PDF-related tools, it focuses entirely on getting and analyzing text data.
+pdfplumber: A Python library that provides a set of tools for extracting information from PDF files. It allows access to both visual elements (such as tables) and textual elements (such as headers).
