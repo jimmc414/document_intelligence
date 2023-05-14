@@ -60,7 +60,7 @@ To run the main script of the project, you can use the following command in your
 ```
 python main.py
 ```
-This will prompt you to enter a file name of a PDF document that you want to process. The script will then perform the following tasks:
+This will process all PDF documents in the 'documents' folder. The script will then perform the following tasks:
 
 - Extract the text from the PDF file using PyMuPDF and PyTesseract.
 - Analyze the text using spaCy, Gensim, TextBlob, Sumy, and Transformers.
