@@ -14,17 +14,17 @@ The project consists of several Python scripts that accomplish different tasks, 
 ### Installation / How to setup
 To run this project, you need to have Python 3.x installed on your system. You also need to install the following libraries and tools:
 
--PyMuPDF: A Python library that enables access and manipulation of PDF files, including text extraction, metadata retrieval, layout analysis.
+- PyMuPDF: A Python library that enables access and manipulation of PDF files, including text extraction, metadata retrieval, layout analysis.
 pdf2image: A Python library that converts PDF files to images, allowing easier processing and analysis of non-textual content in the files.
--PyTesseract: A Python wrapper for the Tesseract OCR engine, which enables optical character recognition (OCR) capabilities for converting scanned images or PDFs to text.
--NLTK: The Natural Language Toolkit (NLTK) is a Python library for working with human language data, providing tools for text processing, tokenization, parsing, classification, etc.
--spaCy: A fast and modern Python library for natural language processing (NLP), offering pretrained models and extensive functionality for NLP tasks such as text tokenization, part-of-speech tagging, named entity recognition, etc.
--Gensim: A Python library specialized in topic modeling and document similarity analysis, which allows efficient large-scale text processing using algorithms like Word2Vec, FastText, Latent Semantic Analysis (LSA), etc.
--TextBlob: A simple Python library for processing textual data, offering basic NLP features such as part-of-speech tagging, noun phrase extraction, sentiment analysis, translation, etc.
--Sumy: A Python library that provides functionality to summarize texts using various algorithms, extracting key information from long articles or documents.
--Scikit-learn: A popular Python library for machine learning and data science, offering tools for preprocessing data, training algorithms, evaluating model performance, etc.
--Transformers (Hugging Face): A Python library for state-of-the-art natural language processing (NLP), based on transformer model architectures like BERT and GPT-3. It offers pre-trained models for tasks like text generation, question-answering (QA), sentiment analysis (SA), etc.
--OpenAI API - Whisper: An API service provided by OpenAI that offers an automatic speech recognition (ASR) system called Whisper. It transcribes spoken language audio data to written text with high accuracy. It requires an OpenAI API key to use.
+- PyTesseract: A Python wrapper for the Tesseract OCR engine, which enables optical character recognition (OCR) capabilities for converting scanned images or PDFs to text.
+- NLTK: The Natural Language Toolkit (NLTK) is a Python library for working with human language data, providing tools for text processing, tokenization, parsing, classification, etc.
+- spaCy: A fast and modern Python library for natural language processing (NLP), offering pretrained models and extensive functionality for NLP tasks such as text tokenization, part-of-speech tagging, named entity recognition, etc.
+- Gensim: A Python library specialized in topic modeling and document similarity analysis, which allows efficient large-scale text processing using algorithms like Word2Vec, FastText, Latent Semantic Analysis (LSA), etc.
+- TextBlob: A simple Python library for processing textual data, offering basic NLP features such as part-of-speech tagging, noun phrase extraction, sentiment analysis, translation, etc.
+- Sumy: A Python library that provides functionality to summarize texts using various algorithms, extracting key information from long articles or documents.
+- Scikit-learn: A popular Python library for machine learning and data science, offering tools for preprocessing data, training algorithms, evaluating model performance, etc.
+- Transformers (Hugging Face): A Python library for state-of-the-art natural language processing (NLP), based on transformer model architectures like BERT and GPT-3. It offers pre-trained models for tasks like text generation, question-answering (QA), sentiment analysis (SA), etc.
+- OpenAI API - Whisper: An API service provided by OpenAI that offers an automatic speech recognition (ASR) system called Whisper. It transcribes spoken language audio data to written text with high accuracy. It requires an OpenAI API key to use.
 
 You can use pip to install the required packages in your Python environment:
 ```
@@ -62,14 +62,14 @@ python main.py
 ```
 This will prompt you to enter a file name of a PDF document that you want to process. The script will then perform the following tasks:
 
--Extract the text from the PDF file using PyMuPDF and PyTesseract.
--Analyze the text using spaCy, Gensim, TextBlob, Sumy, and Transformers.
--Generate a summary of the document and print it to the terminal.
--Extract the key-value pairs from the document and print them to the terminal.
--Cluster the document based on its similarity to other documents in a predefined corpus and print the cluster label to the terminal.
--Classify the document based on its sentiment and print the sentiment score to the terminal.
--Extract any email addresses from the document and print them to the terminal.
--Transcribe any audio files attached to the document using OpenAI API - Whisper and print the transcription to the terminal.
+- Extract the text from the PDF file using PyMuPDF and PyTesseract.
+- Analyze the text using spaCy, Gensim, TextBlob, Sumy, and Transformers.
+- Generate a summary of the document and print it to the terminal.
+- Extract the key-value pairs from the document and print them to the terminal.
+- Cluster the document based on its similarity to other documents in a predefined corpus and print the cluster label to the terminal.
+- Classify the document based on its sentiment and print the sentiment score to the terminal.
+- Extract any email addresses from the document and print them to the terminal.
+- Transcribe any audio files attached to the document using OpenAI API - Whisper and print the transcription to the terminal.
 
 ### Recommended citation
 If you use this project for your own research or work, please cite it as follows:
