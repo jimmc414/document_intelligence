@@ -27,3 +27,34 @@ Create a file called requirements.txt in the top-level directory. This will cont
 Your final project structure should look something like this:
 
 document_intelligence/ ┣ app/ ┃ ┣ data/ ┃ ┃ ┣ train/ ┃ ┃ ┣ test/ ┃ ┃ ┗ ... ┃ ┣ model.py ┃ ┗ utils.py ┣ tests/ ┃ ┗ test_model.py ┣ docs/ ┃ ┣ README.md ┃ ┗ LICENSE ┣ setup.py ┣ requirements.txt ┗ document_classifier.py
+
+Suggestions for renaming the programs in the Document Intelligence project based on what they do:
+
+-   audioExtractText.py -> `extract_text_from_audio.py`
+-   autoextract.py -> `extract_text_from_document.py`
+-   autoExtractPDF2text.py -> `extract_text_from_pdf.py`
+-   autokvextract.py -> `extract_key_value_pairs.py`
+-   autoNER.py -> `extract_named_entities.py`
+-   autoOCR_parallel.py -> `optical_character_recognition.py`
+-   autosentiment.py -> `sentiment_analysis.py`
+-   autosummarize.py -> `summarize_text.py`
+-   categorize_kmeans.py -> `cluster_documents.py`
+-   convert_audio.py -> `convert_audio_format.py`
+-   dl_email.py -> `download_email.py`
+-   document_classification.py -> `classify_documents.py`
+-   document_similarity.py -> `compare_documents.py`
+-   feature_extraction.py -> `extract_features_from_text.py`
+-   file_utils.py -> `manage_files.py`
+-   FL_sentiment_analysis.py -> `sentiment_analysis_using_flair.py`
+-   fuzzywuzzy_addresscompare.py -> `compare_addresses.py`
+-   fuzzy_matching.py -> `fuzzy_match_text.py`
+-   HF_sentiment_analysis.py -> `sentiment_analysis_using_huggingface.py`
+-   info_extraction.py -> `extract_information_from_text.py`
+-   main.py -> `start_document_intelligence_project.py`
+-   NER_Extraction.py -> `extract_named_entities_using_spacy.py`
+-   Rake_Extraction.py -> `extract_keywords_using_rake.py`
+-   relation_extraction.py -> `extract_relations_between_entities.py`
+-   similarity_clustering.py -> `cluster_documents_based_on_similarity.py`
+-   text_preprocessing.py -> `preprocess_text.py`
+-   topic_modeling.py -> `create_topic_model.py`
+-   VADER_sentiment_analysis.py -> `sentiment_analysis_using_vader.py`
