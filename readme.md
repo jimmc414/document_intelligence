@@ -79,13 +79,17 @@ Download and install Poppler from https://pypi.org/project/pdf2image/. There is 
 Move the extracted directory to a desired location on your system.
 
 Add the bin/ directory to your path environment variable.
-
+```
+set PATH=C:\filepath\filename;%PATH%
+```
 Alternatively, you can use the poppler_path = r"c:\path\to\poppler-xx\bin" argument in the convert_from_path function in the autoextractpdf2text.py script.
 
 Download and install Tesseract OCR from its official website (https://github.com/ub-mannheim/tesseract/wiki).
 
 After installation, add the Tesseract OCR executable to your system’s path. For Windows, the default installation path is c:\program files\tesseract-ocr\tesseract.exe. Add this path to your system’s path variable or configure the PyTesseract library to use the installed Tesseract directly.
-
+```
+set PATH=%PATH%;C:\filepath\filename
+```
 Verify your Tesseract installation: In the Python script.
 ```
 import pytesseract
@@ -97,6 +101,7 @@ To run the main script of the project, you can use the following command in your
 ```
 python main.py
 ```
+
 This will process all PDF documents in the 'documents' folder. The script will then perform the following tasks:
 
 - Extract the text from the PDF file using PyMuPDF and PyTesseract.
@@ -108,6 +113,8 @@ This will process all PDF documents in the 'documents' folder. The script will t
 - Extract any email addresses from the document and print them to the terminal.
 - Transcribe any audio files attached to the document using OpenAI API - Whisper and print the transcription to the terminal.
 - All programs can be called as stand-alone processes.
+
+Programs can also all run individually
 
 ## All Programs and Processes
 
