@@ -16,11 +16,13 @@ Here are some sample formatted input data for each of the libraries in this proj
 
 ### **textblob**
 
+```
 {
   "text": "This is a sample text.",
   "sentiment": "positive"
 }
-Use code with caution. Learn more
+```
+
 ### **feature_extraction**
 
 ```
