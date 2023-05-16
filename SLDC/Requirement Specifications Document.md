@@ -6,7 +6,7 @@ Document Intelligence is a system that automatically categorizes documents after
 
 2\. Modules & Functionalities
 
-2.1. autoextractpdf2text.py
+2.1. extract_text_from_pdf.py
 
 - Extract text from searchable PDF files
 
@@ -14,37 +14,31 @@ Document Intelligence is a system that automatically categorizes documents after
 
 - Save the extracted text into *.txt files
 
-2.2. autoocr_parallel.py
+2.2. optical_character_recognition.py
 
 - Perform OCR on non-searchable PDF files in the documents folder
 
 - Save the OCR results into *_ocr.txt files
 
-2.3. autoner.py
+2.3. extract_named_entities.py
 
 - Extract proper names, case numbers, account numbers, and legal terms from the text files using token patterns and Named Entity Recognition (NER)
 
 - Save extracted information into *_ner.txt files
 
-2.4. autosentiment.py
+2.4. sentiment_analysis.py
 
 - Perform sentiment analysis on text files and calculate polarity and subjectivity scores
 
 - Save sentiment analysis results in *_sentiment.txt files
 
-2.5. autosummarize.py
+2.5. summarize_text.py
 
 - Generate summaries of text files
 
 - Save summaries into *_summary.txt files
 
-2.6. Document Intelligence/pegasus_summarize.py
-
-- Generate deeper summarization of text files using PEGASUS model
-
-- Save summaries in pegasus_summarization folder
-
-2.7. automatic_similarity_clustering.py
+2.6. cluster_documents_based_on_similarity.py
 
 - Perform clustering on text files based on similarity among documents
 
@@ -52,13 +46,7 @@ Document Intelligence is a system that automatically categorizes documents after
 
 - Determine the optimal number of clusters
 
-2.8. autoidentification.py
-
-- Extract specific details (e.g., case number, plaintiff name, address) from the text
-
-- Use methods such as pattern matching and NLP techniques to extract the required information
-
-2.9. feature_extraction.py
+2.7. extract_features_from_text.py
 
 - Pre-train a word2vec model
 
@@ -66,9 +54,9 @@ Document Intelligence is a system that automatically categorizes documents after
 
 - Skip the document if no vector is found
 
-2.10. main.py
+2.8. main.py
 
-- Run the individual Python scripts in sequence: autoextractpdf2text.py, autoocr_parallel.py, autoner.py, autosentiment.py, autosummarize.py, and pegasus_summarize.py (in order)
+- Run the individual Python scripts in sequence
 
 - Display categorized text files based on similarity
 
@@ -130,7 +118,6 @@ Upon running `main.py`, the script will generate output in the respective direct
 
 - Text summarization results in the `summarization` folder
 
-- PEGASUS summarization results in the `pegasus_summarization` folder
 
 6\. System Requirements & Setup
 

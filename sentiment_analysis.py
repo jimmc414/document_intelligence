@@ -1,7 +1,7 @@
 import os
 import sys
 import nltk
-import file_utils
+import manage_files
 from textblob import TextBlob
 
 def sentiment_analysis(input_path, output_path):

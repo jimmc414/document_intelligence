@@ -43,8 +43,8 @@ Suggestions for renaming the programs in the Document Intelligence project based
 -   dl_email.py -> `download_email.py`
 -   document_classification.py -> `classify_documents.py`
 -   document_similarity.py -> `compare_documents.py`
--   feature_extraction.py -> `extract_features_from_text.py`
--   file_utils.py -> `manage_files.py`
+-   extract_features_from_text.py -> `extract_features_from_text.py`
+-   manage_files.py -> `manage_files.py`
 -   FL_sentiment_analysis.py -> `sentiment_analysis_using_flair.py`
 -   fuzzywuzzy_addresscompare.py -> `compare_addresses.py`
 -   fuzzy_matching.py -> `fuzzy_match_text.py`
@@ -54,7 +54,7 @@ Suggestions for renaming the programs in the Document Intelligence project based
 -   NER_Extraction.py -> `extract_named_entities_using_spacy.py`
 -   Rake_Extraction.py -> `extract_keywords_using_rake.py`
 -   relation_extraction.py -> `extract_relations_between_entities.py`
--   similarity_clustering.py -> `cluster_documents_based_on_similarity.py`
--   text_preprocessing.py -> `preprocess_text.py`
+-   cluster_documents_based_on_similarity.py -> `cluster_documents_based_on_similarity.py`
+-   preprocess_text.py -> `preprocess_text.py`
 -   topic_modeling.py -> `create_topic_model.py`
 -   VADER_sentiment_analysis.py -> `sentiment_analysis_using_vader.py`

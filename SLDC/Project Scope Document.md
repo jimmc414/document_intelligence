@@ -20,29 +20,29 @@ Project Goals:
 
 Components:
 
-1\. Text Extraction from PDF Files (autoextractpdf2text.py)
+1\. Text Extraction from PDF Files (extract_text_from_pdf.py)
 
     - Check for searchable PDF files and extract text using the PyMuPDF library.
 
-2\. OCR Processing for Non-searchable PDF Files (autoocr_parallel.py)
+2\. OCR Processing for Non-searchable PDF Files (optical_character_recognition.py)
 
     - Convert non-searchable PDFs to text using pytesseract and pdf2image libraries.
 
-3\. Named Entity Recognition (autoner.py)
+3\. Named Entity Recognition (extract_named_entities.py)
 
     - Extract proper names, case numbers, account numbers, and legal terms using the Spacy library.
 
-4\. Similarity Clustering (automatic_similarity_clustering.py)
+4\. Similarity Clustering (cluster_documents_based_on_similarity.py)
 
     - Determine the best similarity measure and cluster documents based on their similarity using the Scikit-learn library.
 
-5\. Sentiment Analysis (autosentiment.py)
+5\. Sentiment Analysis (sentiment_analysis.py)
 
     - Perform sentiment analysis on the extracted text using the TextBlob library.
 
-6\. Text Summarization (autosummarize.py & pegasus_summarize.py)
+6\. Text Summarization (summarize_text.py)
 
-    - Generate summaries of the extracted text using the Sumy library and Pegasus model from the Hugging Face Transformers library.
+    - Generate summaries of the extracted text using the Sumy library.
 
 Project Deliverables:
 

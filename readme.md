@@ -16,7 +16,7 @@ The project consists of several Python scripts that accomplish different tasks, 
 You can use pip to install the required packages in your Python environment:
 
 ```
-pip install textblob feature_extraction text_preprocessing sys sklearn torch spacy csv gensim thefuzz threading transformers numpy chardet stanza glob google_auth_oauthlib pdf2image sumy info_extraction time warnings flair vaderSentiment concurrent google fuzzywuzzy file_utils PyPDF4 re os openai base64 nltk pandas similarity_clustering functools requests googleapiclient rake_nltk subprocess fitz pytesseract collections
+pip install textblob sys sklearn torch spacy csv gensim thefuzz threading transformers numpy chardet stanza glob google_auth_oauthlib pdf2image sumy time warnings flair vaderSentiment concurrent google fuzzywuzzy PyPDF4 re os openai base64 nltk pandas functools requests googleapiclient rake_nltk subprocess fitz pytesseract collections
 ```
 
 You also need to download the necessary language model for spaCy:
@@ -33,7 +33,7 @@ Add the bin/ directory to your path environment variable.
 ```
 set PATH=%PATH%;C:\python\autoindex\poppler-0.68.0\bin
 ```
-Alternatively, you can use the poppler_path = r"c:\path\to\poppler-xx\bin" argument in the convert_from_path function in the autoextractpdf2text.py script.
+Alternatively, you can use the poppler_path = r"c:\path\to\poppler-xx\bin" argument in the convert_from_path function in the extract_text_from_pdf.py script.
 
 Download and install Tesseract OCR from its official website (https://github.com/ub-mannheim/tesseract/wiki).
 
@@ -74,58 +74,58 @@ Programs can also all run individually
 
 | Program                 | Description                                                                                                               |
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| audioExtractText.py      | Extracts text from audio files. It uses the Google Cloud Speech API to transcribe the audio into text.                   |
-| autoextract.py           | Extracts information from documents. It can extract entities, dates, keywords, and summaries from documents.              |
-| autoExtractPDF2text.py   | Extracts text from PDF files. It uses the PyPDF2 library to convert PDF files to text.                                   |
-| autokvextract.py         | Extracts key-value pairs from text. It uses the spacy library to identify key-value pairs in text.                        |
-| autoNER.py               | Extracts named entities from text. It uses the spacy library to identify named entities in text.                           |
-| autoOCR_parallel.py      | Extracts text from images using optical character recognition (OCR). It uses the Tesseract OCR library to extract text.   |
-| autosentiment.py         | Analyzes the sentiment of text. It uses the VaderSentiment library to analyze the sentiment of text.                      |
-| autosummarize.py         | Summarizes text. It uses the sumy library to summarize text.                                                             |
-| categorize_kmeans.py     | Classifies text into categories using k-means clustering. It uses the scikit-learn library to perform k-means clustering. |
-| convert_audio.py         | Converts audio files from one format to another. It uses the ffmpeg library to convert audio files.                      |
-| dl_email.py              | Downloads emails from a mail server. It uses the imaplib library to download emails from a mail server.                  |
-| document_classification.py | Classifies documents into categories. It uses the spacy library to extract features from documents and then uses a machine learning algorithm to classify the documents into categories. |
-| document_similarity.py   | Calculates the similarity between documents. It uses the gensim library to calculate the similarity between documents.    |
-| feature_extraction.py    | Extracts features from text. It uses the spacy library to extract features from text.                                      |
-| file_utils.py            | Provides utility functions for working with files. It can be used to read, write, and delete files.                      |
-| FL_sentiment_analysis.py | Analyzes the sentiment of text using the FastText library.                                                                |
-| fuzzywuzzy_addresscompare.py | Compares addresses using the fuzzywuzzy library. It can be used to find similar addresses.                             |
-| fuzzy_matching.py        | Performs fuzzy matching on text. It can be used to find similar text strings.                                             |
-| HF_sentiment_analysis.py | Analyzes the sentiment of text using the Hugging Face Transformers library.                                               |
-| info_extraction.py       | Extracts information from documents. It can extract entities, dates, keywords, and summaries from documents.              |
+| extract_text_from_audio.py| Extracts text from audio files. It uses the Google Cloud Speech API to transcribe the audio into text.                   |
+| extract_text_from_document.py| Extracts information from documents. It can extract entities, dates, keywords, and summaries from documents.              |
+| extract_text_from_pdf.py| Extracts text from PDF files. It uses the PyPDF2 library to convert PDF files to text.                                   |
+| extract_key_value_pairs.py| Extracts key-value pairs from text. It uses the spacy library to identify key-value pairs in text.                        |
+| extract_named_entities.py| Extracts named entities from text. It uses the spacy library to identify named entities in text.                           |
+| optical_character_recognition.py| Extracts text from images using optical character recognition (OCR). It uses the Tesseract OCR library to extract text.   |
+| sentiment_analysis.py| Analyzes the sentiment of text. It uses the VaderSentiment library to analyze the sentiment of text.                      |
+| summarize_text.py| Summarizes text. It uses the sumy library to summarize text.                                                             |
+| cluster_documents.py| Classifies text into categories using k-means clustering. It uses the scikit-learn library to perform k-means clustering. |
+| convert_audio_format.py| Converts audio files from one format to another. It uses the ffmpeg library to convert audio files.                      |
+| download_email.py| Downloads emails from a mail server. It uses the imaplib library to download emails from a mail server.                  |
+| classify_documents.py| Classifies documents into categories. It uses the spacy library to extract features from documents and then uses a machine learning algorithm to classify the documents into categories. |
+| compare_documents.py| Calculates the similarity between documents. It uses the gensim library to calculate the similarity between documents.    |
+| extract_features_from_text.py| Extracts features from text. It uses the spacy library to extract features from text.                                      |
+| manage_files.py | Provides utility functions for working with files. It can be used to read, write, and delete files.                      |
+| sentiment_analysis_using_flair.py| Analyzes the sentiment of text using the FastText library.                                                                |
+| compare_addresses.py| Compares addresses using the fuzzywuzzy library. It can be used to find similar addresses.                             |
+| fuzzy_match_text.py| Performs fuzzy matching on text. It can be used to find similar text strings.                                             |
+| sentiment_analysis_using_huggingface.py| Analyzes the sentiment of text using the Hugging Face Transformers library.                                               |
+| extract_information_from_text.py| Extracts information from documents. It can extract entities, dates, keywords, and summaries from documents.              |
 | main.py                  | This is the main program of the project. It provides a command line interface for the other programs.                     |
-| NER_Extraction.py        | Extracts named entities from text. It uses the spacy library to identify named entities in text.                           |
-| Rake_Extraction.py       | Extracts keywords from text. It uses the Rake library to extract keywords from text.                                       |
-| relation_extraction.py   | Extracts relations between entities from text. It uses the spacy library to identify relations between entities in text.  |
-| similarity_clustering.py | Clusters documents based on their similarity. It uses the scikit-learn library to perform k-means clustering.             |
-| text_preprocessing.py    | Preprocesses text. It can be used to clean, tokenize, and normalize text.                                                  |
-| topic_modeling.py        | Creates topic models from text. It uses the gensim library to create topic models from text.                               |
-| VADER_sentiment_analysis.py | Analyzes the sentiment of text using the VADER library.                                                                  |
+| extract_named_entities_using_spacy.py| Extracts named entities from text. It uses the spacy library to identify named entities in text.                           |
+| extract_keywords_using_rake.py| Extracts keywords from text. It uses the Rake library to extract keywords from text.                                       |
+| extract_relations_between_entities.py| Extracts relations between entities from text. It uses the spacy library to identify relations between entities in text.  |
+| cluster_documents_based_on_similarity.py| Clusters documents based on their similarity. It uses the scikit-learn library to perform k-means clustering.             |
+| preprocess_text.py| Preprocesses text. It can be used to clean, tokenize, and normalize text.                                                  |
+| create_topic_model.py| Creates topic models from text. It uses the gensim library to create topic models from text.                               |
+| sentiment_analysis_using_vader.py| Analyzes the sentiment of text using the VADER library.                                                                  |
 
 
 **Programs Long Version**
 
 
-audioExtractText.py: A program that performs the following functions:
+extract_text_from_audio.py: A program that performs the following functions:
 - Get an audio file as an input argument
 - Transcribe the audio file using googleapiclient library
 - Write the transcription to a text file with the same name as the audio file
 - Called by: main.py or as standalone program
 
-autoextract.py: A program that performs the following functions:
+extract_text_from_document.py: A program that performs the following functions:
 - Get a PDF file as an input argument
 - Extract text from the PDF file using PyMuPDF library
 - Write the extracted text to a text file with the same name as the PDF file
 - Called by: autoExtractPDF2text.py
 
-autoExtractPDF2text.py: A program that performs the following functions:
+extract_text_from_pdf.py: A program that performs the following functions:
 - Get the input directory and output file name from the main program
 - Iterate over all PDF files in the input directory
 - Call autoextract.py to extract text from each PDF file
 - Called by: main.py or as standalone program
 
-autokvextract.py: A program that performs the following functions:
+extract_key_value_pairs.py: A program that performs the following functions:
 - Get the input directory and output file name from the main program
 - Iterate over all text files in the input directory
 - Preprocess each text file using text_preprocessing library
@@ -133,7 +133,7 @@ autokvextract.py: A program that performs the following functions:
 - Write the extracted key-value pairs to a CSV file
 - Called by: main.py or as standalone program
 
-autoNER.py: A program that performs the following functions:
+extract_named_entities.py: A program that performs the following functions:
 - Get the input directory and output file name from the main program
 - Iterate over all text files in the input directory
 - Preprocess each text file using text_preprocessing library
@@ -141,7 +141,7 @@ autoNER.py: A program that performs the following functions:
 - Write the extracted entities to a CSV file
 - Called by: main.py or as standalone program
 
-autoOCR_parallel.py: A program that performs the following functions:
+optical_character_recognition.py: A program that performs the following functions:
 - Get the input directory and output file name from the main program
 - Iterate over all image files in the input directory
 - Convert each image file to a PDF file using pdf2image library
@@ -150,7 +150,7 @@ autoOCR_parallel.py: A program that performs the following functions:
 - Use threading library to run multiple OCR processes in parallel
 - Called by: main.py or as standalone program
 
-autosentiment.py: A program that performs the following functions:
+sentiment_analysis.py: A program that performs the following functions:
 - Get the input directory and output file name from the main program
 - Iterate over all text files in the input directory
 - Preprocess each text file using text_preprocessing library
@@ -158,7 +158,7 @@ autosentiment.py: A program that performs the following functions:
 - Write the sentiment scores to a CSV file
 - Called by: main.py or as standalone program
 
-autosummarize.py: A program that performs the following functions:
+summarize_text.py: A program that performs the following functions:
 - Get the input directory and output file name from the main program
 - Iterate over all text files in the input directory
 - Preprocess each text file using text_preprocessing library
@@ -166,7 +166,7 @@ autosummarize.py: A program that performs the following functions:
 - Write the summaries to a CSV file
 - Called by: main.py or as standalone program
 
-categorize_kmeans.py: A program that performs the following functions:
+cluster_documents.py: A program that performs the following functions:
 - Get the input directory and output file name from the main program
 - Iterate over all text files in the input directory
 - Preprocess each text file using text_preprocessing library
@@ -177,20 +177,20 @@ categorize_kmeans.py: A program that performs the following functions:
 - Write the categories to a CSV file
 - Called by: main.py or as standalone program
 
-convert_audio.py: A program that performs the following functions:
+convert_audio_format.py: A program that performs the following functions:
 - Get an audio file as an input argument
 - Convert the audio file to a WAV format using subprocess library
 - Write the converted audio file to a WAV file with the same name as the original file
 - Called by: audioExtractText.py
 
-dl_email.py: A program that performs the following functions:
+download_email.py: A program that performs the following functions:
 - Get an email address and a password as input arguments
 - Connect to Gmail API using googleapiclient and google_auth_oauthlib libraries
 - Download all attachments from unread emails in a specified folder
 - Write the downloaded attachments to a specified directory
 - Called by: main.py or as standalone program
 
-document_classification.py: A program that performs the following functions:
+classify_documents.py: A program that performs the following functions:
 - Get a text file as an input argument
 - Preprocess the text file using text_preprocessing library
 - Embed the text file using torch and transformers libraries
@@ -199,7 +199,7 @@ document_classification.py: A program that performs the following functions:
 - Write the predicted class to a CSV file
 - Called by: main.py or as standalone program
 
-document_similarity.py: A program that performs the following functions:
+compare_documents.py: A program that performs the following functions:
 - Get two text files as input arguments
 - Preprocess the text files using text_preprocessing library
 - Embed the text files using torch and transformers libraries
@@ -207,11 +207,11 @@ document_similarity.py: A program that performs the following functions:
 - Write the similarity score to a CSV file
 - Called by: main.py or as standalone program
 
-feature_extraction.py: A module that defines some functions for extracting features from text data, such as TF-IDF vectors, word embeddings, and document embeddings.
+extract_features_from_text.py: A module that defines some functions for extracting features from text data, such as TF-IDF vectors, word embeddings, and document embeddings.
 
-file_utils.py: A module that defines some functions for working with files, such as reading, writing, deleting, moving, and renaming files.
+manage_files.py: A module that defines some functions for working with files, such as reading, writing, deleting, moving, and renaming files.
 
-FL_sentiment_analysis.py: A program that performs the following functions:
+sentiment_analysis_using_flair.py: A program that performs the following functions:
 - Get a text file as an input argument
 - Preprocess the text file using text_preprocessing library
 - Load a pre-trained sentiment analysis model using flair library
@@ -219,13 +219,13 @@ FL_sentiment_analysis.py: A program that performs the following functions:
 - Write the predicted sentiment to a CSV file
 - Called by: main.py or as standalone program
 
-fuzzywuzzy_addresscompare.py: A program that performs the following functions:
+compare_addresses.py: A program that performs the following functions:
 - Get two addresses as input arguments
 - Compare the addresses using fuzzywuzzy library
 - Write the comparison score to a CSV file
 - Called by: main.py or as standalone program
 
-fuzzy_matching.py: A program that performs the following functions:
+fuzzy_match_text.py: A program that performs the following functions:
 - Get a text file and a list of categories as input arguments
 - Extract keywords from the text file using rake_nltk library
 - Compare the keywords with the categories using fuzzywuzzy and thefuzz libraries
@@ -233,7 +233,7 @@ fuzzy_matching.py: A program that performs the following functions:
 - Write the assigned category to a CSV file
 - Called by: main.py or as standalone program
 
-HF_sentiment_analysis.py: A program that performs the following functions:
+sentiment_analysis_using_huggingface.py: A program that performs the following functions:
 - Get a text file as an input argument
 - Preprocess the text file using text_preprocessing library
 - Load a pre-trained sentiment analysis model using transformers library
@@ -241,7 +241,7 @@ HF_sentiment_analysis.py: A program that performs the following functions:
 - Write the predicted sentiment to a CSV file
 - Called by: main.py or as standalone program
 
-info_extraction.py: A module that defines some functions for extracting information from text data, such as entities, dates, keywords, and key-value pairs.
+extract_information_from_text.py: A module that defines some functions for extracting information from text data, such as entities, dates, keywords, and key-value pairs.
 
 main.py: The main program that calls other programs and performs the following functions:
 - Get the input directory and output file name from the command-line arguments
@@ -255,28 +255,28 @@ main.py: The main program that calls other programs and performs the following f
 - Call autokvextract.py to extract key-value pairs from text files
 - Write the results to a CSV file
 
-NER_Extraction.py: A program that performs the following functions:
+extract_named_entities_using_spacy.py: A program that performs the following functions:
 - Get a text file as an input argument
 - Preprocess the text file using text_preprocessing library
 - Perform named entity recognition on the text file using spacy, flair, and transformers libraries
 - Write the extracted entities to a CSV file
 - Called by: main.py or as standalone program
 
-Rake_Extraction.py: A program that performs the following functions:
+extract_keywords_using_rake.py: A program that performs the following functions:
 - Get a text file as an input argument
 - Preprocess the text file using text_preprocessing library
 - Extract keywords from the text file using rake_nltk library
 - Write the extracted keywords to a CSV file
 - Called by: main.py or as standalone program
 
-relation_extraction.py: A program that performs the following functions:
+extract_relations_between_entities.py: A program that performs the following functions:
 - Get a text file as an input argument
 - Preprocess the text file using text_preprocessing library
 - Perform relation extraction on the text file using spacy library
 - Write the extracted relations to a CSV file
 - Called by: main.py or as standalone program
 
-similarity_clustering.py: A program that performs the following functions:
+cluster_documents_based_on_similarity.py: A program that performs the following functions:
 - Get the input directory and output file name from the main program
 - Iterate over all text files in the input directory
 - Preprocess each text file using text_preprocessing library
@@ -285,16 +285,16 @@ similarity_clustering.py: A program that performs the following functions:
 - Write the cluster labels to a CSV file
 - Called by: main.py or as standalone program
 
-text_preprocessing.py: A module that defines some functions for preprocessing text data, such as cleaning, tokenizing, lemmatizing, and vectorizing.
+preprocess_text.py: A module that defines some functions for preprocessing text data, such as cleaning, tokenizing, lemmatizing, and vectorizing.
 
-topic_modeling.py: A program that performs the following functions:
+create_topic_model.py: A program that performs the following functions:
 - Get a text file as an input argument
 - Preprocess the text file using text_preprocessing library
 - Perform topic modeling on the text file using gensim library
 - Write the extracted topics to a CSV file
 - Called by: main.py or as standalone program
 
-VADER_sentiment_analysis.py: A program that performs the following functions:
+sentiment_analysis_using_vader.py: A program that performs the following functions:
 - Get a text file as an input argument
 - Preprocess the text file using text_preprocessing library
 - Perform sentiment analysis on the text file using vaderSentiment library
@@ -332,7 +332,7 @@ VADER_sentiment_analysis.py: A program that performs the following functions:
 | concurrent | Library for managing concurrent execution of tasks. |
 | google | Library for interacting with Google APIs. |
 | fuzzywuzzy | Library for fuzzy string matching. |
-| file_utils | Library for working with files. |
+| manage_files | Library for working with files. |
 | PyPDF4 | Library for reading and writing PDF files. |
 | re | Library for regular expressions. |
 | os | Library for interacting with the operating system. |

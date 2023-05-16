@@ -1,4 +1,4 @@
-document_similarity.py
+compare_documents.py
 This program calculates the similarity between two documents. It uses a TfidfVectorizer to convert the documents to vectors, and then computes the cosine similarity between the vectors.
 
 Requirements
@@ -36,6 +36,6 @@ The similarity score between document 1 and document 1 is 1.0
 This means that document1.txt is most similar to itself, followed by document2.txt, and then document3.txt.
 
 How it works
-The document_similarity.py program works by first converting the documents to vectors using a TfidfVectorizer. A TfidfVectorizer is a statistical method that calculates the term frequency-inverse document frequency (tf-idf) of each word in the document. The term frequency is the number of times the word appears in the document, and the inverse document frequency is the logarithm of the ratio of the total number of documents in the corpus to the number of documents that contain the word. The tf-idf value reflects how important a word is in a document relative to the corpus.
+The compare_documents.py program works by first converting the documents to vectors using a TfidfVectorizer. A TfidfVectorizer is a statistical method that calculates the term frequency-inverse document frequency (tf-idf) of each word in the document. The term frequency is the number of times the word appears in the document, and the inverse document frequency is the logarithm of the ratio of the total number of documents in the corpus to the number of documents that contain the word. The tf-idf value reflects how important a word is in a document relative to the corpus.
 
 Once the documents are converted to vectors, the program computes the cosine similarity between them. The cosine similarity is a measure of how similar two vectors are based on their angle. It ranges from -1 (opposite directions) to 1 (same direction). A higher cosine similarity means a higher degree of similarity between two documents.

@@ -59,7 +59,7 @@ def save_clusters(file_names, labels, path):
 input_path = "C:\\python\\autoindex\\txt_output" # input directory for text files
 output_path = "C:\\python\\autoindex\\category" # output directory for cluster labels
 n_components = 10 # number of topics to extract using LSA
-n_clusters = 25 # number of clusters to form using K-means
+n_clusters = 5 # number of clusters to form using K-means
 n_top_words = 10 # number of top words to display for each cluster
 
 # Read the text files from the input directory

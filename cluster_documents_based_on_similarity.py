@@ -78,7 +78,7 @@ def categorize_files(directory_path, processed_texts, file_names, original_texts
             print(f" {file_name}")
             if most_freq_phrases[category].lower() == "request to file foreign judgment":
                 file_path = os.path.join(directory_path, file_name)
-                content = file_utils.read_file(file_path)
+                content = manage_files.read_file(file_path)
 
                 extracted_values = info_extraction.extract_requested_info(content)
                 for key, value in extracted_values.items():

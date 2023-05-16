@@ -1,9 +1,9 @@
 import os
-import file_utils
-import text_preprocessing
-import feature_extraction
-import similarity_clustering
-import info_extraction
+import manage_files
+import preprocess_text
+import extract_features_from_text
+import cluster_documents_based_on_similarity
+import extract_information_from_text
 import sys
 import subprocess
 
@@ -11,42 +11,42 @@ directory_path = "c:/python/autoindex/txt_output"
 
 def main():
     # running autoextractpdf2text.py
-    subprocess.call(['python', 'autoextractpdf2text.py'])
+    subprocess.call(['python', 'extract_text_from_pdf.py'])
     
     # running autoocr_parallel.py
-    subprocess.call(['python', 'autoocr_parallel.py'])
+    subprocess.call(['python', 'optical_character_recognition.py'])
 
-    txt_files = file_utils.get_txt_files(directory_path)
+    txt_files = manage_files.get_txt_files(directory_path)
     processed_texts = []
     file_names = []
     original_texts = []
     for file_path in txt_files:
-        content = file_utils.read_file(file_path)
+        content = manage_files.read_file(file_path)
         original_texts.append(content)
-        tokens = text_preprocessing.preprocess_text(content)
-        vector = feature_extraction.vectorize_text(tokens)
+        tokens = preprocess_text.preprocess_text(content)
+        vector = extract_features_from_text.vectorize_text(tokens)
         if vector is not None:
             processed_texts.append(vector)
             file_names.append(os.path.basename(file_path))
 
-    # Call categorize_files from similarity_clustering
-    similarity_clustering.categorize_files(directory_path, processed_texts, file_names, original_texts)
+    # Call categorize_files from cluster_documents_based_on_similarity
+    cluster_documents_based_on_similarity.categorize_files(directory_path, processed_texts, file_names, original_texts)
 
-    subprocess.call(['python', 'audioExtractText.py'])  
+    subprocess.call(['python', 'extract_text_from_audio.py'])  
     print("Transcribing Audio Files to Text...")
-    subprocess.call(['python', 'dl_email.py'])
+    subprocess.call(['python', 'download_email.py'])
     print("Extracting emails to Text")
-    subprocess.call(['python', 'autoextract.py'])  
+    subprocess.call(['python', 'extract_text_from_document.py'])  
     print("Extracting Named Entities...")
-    subprocess.call(['python', 'autokvextract.py'])  
+    subprocess.call(['python', 'extract_key_value_pairs.py'])  
     print("Extracting Key / Value Pairs...")
-    subprocess.call(['python', 'autoner.py'])  
+    subprocess.call(['python', 'extract_named_entities.py'])  
     print("Performing Sentiment Analysis...")
-    subprocess.call(['python', 'autosentiment.py'])
+    subprocess.call(['python', 'sentiment_analysis.py'])
     print("Performing Summarization...")
-    subprocess.call(['python', 'autosummarize.py'])
+    subprocess.call(['python', 'summarize_text.py'])
     print("Performing Classification...")
-    subprocess.call(['python', 'categorize_kmeans.py'])
+    subprocess.call(['python', 'cluster_documents.py'])
     
 
 if __name__ == "__main__":

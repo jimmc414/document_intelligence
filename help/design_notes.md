@@ -360,7 +360,7 @@ def ocr_extraction(image_path):
 
 import pandas as pd
 
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.extract_features_from_text.text import TfidfVectorizer
 
 from sklearn.naive_bayes import MultinomialNB
 

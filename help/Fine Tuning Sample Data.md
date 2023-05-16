@@ -23,7 +23,7 @@ Here are some sample formatted input data for each of the libraries in this proj
 }
 ```
 
-### **feature_extraction**
+### **extract_features_from_text**
 
 ```
 {
@@ -38,7 +38,7 @@ Here are some sample formatted input data for each of the libraries in this proj
 }
 ```
 
-### **text_preprocessing**
+### **preprocess_text**
 
 ```
 {
