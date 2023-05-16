@@ -1,4 +1,4 @@
-##**Training Guide**
+## **Training Guide**
 
 Gather the training data. This data can be in a variety of formats, but it is important to make sure that it is formatted in a way that the model can understand. For example, if you are training a model to classify text, the training data should be in a format that allows the model to learn the different classes of text.
 
@@ -14,14 +14,14 @@ Once the model is trained and fine-tuned, it can be used to make predictions on 
 
 Here are some sample formatted input data for each of the libraries in this project:
 
-###**textblob**
+### **textblob**
 
 {
   "text": "This is a sample text.",
   "sentiment": "positive"
 }
 Use code with caution. Learn more
-###**feature_extraction**
+### **feature_extraction**
 
 ```
 {
@@ -36,7 +36,7 @@ Use code with caution. Learn more
 }
 ```
 
-###**text_preprocessing**
+### **text_preprocessing**
 
 ```
 {
@@ -45,7 +45,7 @@ Use code with caution. Learn more
 }
 ```
 
-###**sys**
+### **sys**
 
 ```
 {
@@ -55,7 +55,7 @@ Use code with caution. Learn more
 }
 ```
 
-###**sklearn**
+### **sklearn**
 
 ```
 {
@@ -67,7 +67,7 @@ Use code with caution. Learn more
 }
 ```
 
-##***torch***
+### ***torch***
 
 ```
 {
@@ -79,7 +79,7 @@ Use code with caution. Learn more
 }
 ```
 
-###**spacy**
+### **spacy**
 
 ```
 {
@@ -116,7 +116,7 @@ Use code with caution. Learn more
 }
 ```
 
-csv
+### **csv**
 
 ```
 text,sentiment
@@ -124,7 +124,7 @@ This is a positive text,positive
 This is a negative text,negative
 ```
 
-###**gensim**
+### **gensim**
 
 ```
 {
@@ -135,3 +135,5 @@ This is a negative text,negative
   [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
   [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1]
 	]
+}
+```
