@@ -18,55 +18,6 @@ You can use pip to install the required packages in your Python environment:
 ```
 pip install textblob feature_extraction text_preprocessing sys sklearn torch spacy csv gensim thefuzz threading transformers numpy chardet stanza glob google_auth_oauthlib pdf2image sumy info_extraction time warnings flair vaderSentiment concurrent google fuzzywuzzy file_utils PyPDF4 re os openai base64 nltk pandas similarity_clustering functools requests googleapiclient rake_nltk subprocess fitz pytesseract collections
 ```
-**Libraries**
-
-| Library | Description |
-| --- | --- |
-| textblob | Natural language processing library that provides a simple API for common NLP tasks such as sentiment analysis and text classification. |
-| feature_extraction | Library for extracting features from text data. |
-| text_preprocessing | Library for preprocessing text data, such as cleaning and tokenizing. |
-| sys | Library for interacting with the Python runtime system. |
-| sklearn | Machine learning library that provides a wide range of supervised and unsupervised learning algorithms. |
-| torch | Machine learning library that provides a fast and flexible deep learning framework. |
-| spacy | Natural language processing library that provides a high-performance statistical NLP engine. |
-| csv | Library for reading and writing CSV files. |
-| gensim | Natural language processing library that provides a number of tools for working with large-scale text corpora. |
-| thefuzz | Library for fuzzy string matching. |
-| threading | Library for creating and managing threads. |
-| transformers | Library for natural language processing that provides a number of pre-trained models for tasks such as text classification and question answering. |
-| numpy | Library for scientific computing that provides a high-performance multidimensional array object. |
-| chardet | Library for detecting the encoding of a text file. |
-| stanza | Natural language processing library that provides a high-performance statistical NLP engine for the Turkish language. |
-| glob | Library for finding files that match a pattern. |
-| google_auth_oauthlib | Library for authenticating with Google APIs. |
-| pdf2image | Library for converting PDF files to images. |
-| sumy | Library for summarizing text documents. |
-| info_extraction | Library for extracting information from text documents, such as entities, dates, and keywords. |
-| time | Library for getting the current time and date. |
-| warnings | Library for handling warnings. |
-| flair | Natural language processing library that provides a number of pre-trained models for tasks such as sentiment analysis and named entity recognition. |
-| vaderSentiment | Library for sentiment analysis. |
-| concurrent | Library for managing concurrent execution of tasks. |
-| google | Library for interacting with Google APIs. |
-| fuzzywuzzy | Library for fuzzy string matching. |
-| file_utils | Library for working with files. |
-| PyPDF4 | Library for reading and writing PDF files. |
-| re | Library for regular expressions. |
-| os | Library for interacting with the operating system. |
-| openai | Library for interacting with OpenAI APIs. |
-| base64 | Library for encoding and decoding binary data in base64 format. |
-| nltk | Natural language processing library that provides a wide range of NLP tools and resources. |
-| pandas | Library for data analysis and manipulation. |
-| similarity_clustering | Library for clustering and finding similar items in a dataset. |
-| functools | Library for providing higher-order functions and other tools for working with functions. |
-| requests | Library for making HTTP requests. |
-| googleapiclient | Library for interacting with Google APIs. |
-| rake_nltk | Library for natural language processing that provides a number of tools for extracting keywords from text. |
-| subprocess | Library for launching subprocesses. |
-| fitz | Library for working with PDF files. |
-| pytesseract | Library for optical character recognition. |
-| collections | Library for providing a number of container data types, such as lists, sets, and dictionaries.
-
 
 You also need to download the necessary language model for spaCy:
 ```
@@ -119,6 +70,8 @@ Programs can also all run individually
 ## All Programs and Processes
 
 **Programs Short Version**
+
+
 | Program                 | Description                                                                                                               |
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------|
 | audioExtractText.py      | Extracts text from audio files. It uses the Google Cloud Speech API to transcribe the audio into text.                   |
@@ -152,6 +105,8 @@ Programs can also all run individually
 
 
 **Programs Long Version**
+
+
 audioExtractText.py: A program that performs the following functions:
 - Get an audio file as an input argument
 - Transcribe the audio file using googleapiclient library
@@ -346,3 +301,51 @@ VADER_sentiment_analysis.py: A program that performs the following functions:
 - Write the sentiment scores to a CSV file
 - Called by: main.py or as standalone program
 
+### **Libraries**
+
+| Library | Description |
+| --- | --- |
+| textblob | Natural language processing library that provides a simple API for common NLP tasks such as sentiment analysis and text classification. |
+| feature_extraction | Library for extracting features from text data. |
+| text_preprocessing | Library for preprocessing text data, such as cleaning and tokenizing. |
+| sys | Library for interacting with the Python runtime system. |
+| sklearn | Machine learning library that provides a wide range of supervised and unsupervised learning algorithms. |
+| torch | Machine learning library that provides a fast and flexible deep learning framework. |
+| spacy | Natural language processing library that provides a high-performance statistical NLP engine. |
+| csv | Library for reading and writing CSV files. |
+| gensim | Natural language processing library that provides a number of tools for working with large-scale text corpora. |
+| thefuzz | Library for fuzzy string matching. |
+| threading | Library for creating and managing threads. |
+| transformers | Library for natural language processing that provides a number of pre-trained models for tasks such as text classification and question answering. |
+| numpy | Library for scientific computing that provides a high-performance multidimensional array object. |
+| chardet | Library for detecting the encoding of a text file. |
+| stanza | Natural language processing library that provides a high-performance statistical NLP engine for the Turkish language. |
+| glob | Library for finding files that match a pattern. |
+| google_auth_oauthlib | Library for authenticating with Google APIs. |
+| pdf2image | Library for converting PDF files to images. |
+| sumy | Library for summarizing text documents. |
+| info_extraction | Library for extracting information from text documents, such as entities, dates, and keywords. |
+| time | Library for getting the current time and date. |
+| warnings | Library for handling warnings. |
+| flair | Natural language processing library that provides a number of pre-trained models for tasks such as sentiment analysis and named entity recognition. |
+| vaderSentiment | Library for sentiment analysis. |
+| concurrent | Library for managing concurrent execution of tasks. |
+| google | Library for interacting with Google APIs. |
+| fuzzywuzzy | Library for fuzzy string matching. |
+| file_utils | Library for working with files. |
+| PyPDF4 | Library for reading and writing PDF files. |
+| re | Library for regular expressions. |
+| os | Library for interacting with the operating system. |
+| openai | Library for interacting with OpenAI APIs. |
+| base64 | Library for encoding and decoding binary data in base64 format. |
+| nltk | Natural language processing library that provides a wide range of NLP tools and resources. |
+| pandas | Library for data analysis and manipulation. |
+| similarity_clustering | Library for clustering and finding similar items in a dataset. |
+| functools | Library for providing higher-order functions and other tools for working with functions. |
+| requests | Library for making HTTP requests. |
+| googleapiclient | Library for interacting with Google APIs. |
+| rake_nltk | Library for natural language processing that provides a number of tools for extracting keywords from text. |
+| subprocess | Library for launching subprocesses. |
+| fitz | Library for working with PDF files. |
+| pytesseract | Library for optical character recognition. |
+| collections | Library for providing a number of container data types, such as lists, sets, and dictionaries.
