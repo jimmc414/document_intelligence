@@ -31,7 +31,7 @@ Move the extracted directory to a desired location on your system.
 
 Add the bin/ directory to your path environment variable.
 ```
-set PATH=C:\filepath\filename;%PATH%
+set PATH=%PATH%;C:\python\autoindex\poppler-0.68.0\bin
 ```
 Alternatively, you can use the poppler_path = r"c:\path\to\poppler-xx\bin" argument in the convert_from_path function in the autoextractpdf2text.py script.
 
@@ -39,7 +39,7 @@ Download and install Tesseract OCR from its official website (https://github.com
 
 After installation, add the Tesseract OCR executable to your system’s path. For Windows, the default installation path is c:\program files\tesseract-ocr\tesseract.exe. Add this path to your system’s path variable or configure the PyTesseract library to use the installed Tesseract directly.
 ```
-set PATH=%PATH%;C:\filepath\filename
+set PATH=%PATH%;c:\program files\tesseract-ocr\tesseract.exe
 ```
 Verify your Tesseract installation: In the Python script.
 ```
