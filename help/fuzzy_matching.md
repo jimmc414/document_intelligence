@@ -7,10 +7,15 @@ The fuzz.extractOne() function returns a tuple containing the best match and its
 Here is an example of how to use the fuzzy_matching.py script:
 
 Python
+
 entities = ["John Smith", "123 Main Street"]
+
 accounts = {
-    "John Smith": ["John Smith", "123 Main Street"],
-    "Jane Doe": ["Jane Doe", "456 Elm Street"],
+
+    "John Smith": ["John Smith", "123 Main Street"],
+
+    "Jane Doe": ["Jane Doe", "456 Elm Street"],
+
 }
 
 fuzzy_matching.py(entities, accounts)
@@ -18,6 +23,9 @@ fuzzy_matching.py(entities, accounts)
 This will write the following CSV file to the current directory:
 
 Code snippet
+
 doc_name,confidence_score
+
 John Smith,100
+
 123 Main Street,100
