@@ -14,21 +14,57 @@ The project consists of several Python scripts that accomplish different tasks, 
 ### Installation / How to setup
 To run this project, you need to have Python 3.x installed on your system. You also need to install the following libraries and tools:
 
-- PyMuPDF: A Python library that enables access and manipulation of PDF files, including text extraction, metadata retrieval, layout analysis.
-pdf2image: A Python library that converts PDF files to images, allowing easier processing and analysis of non-textual content in the files.
-- PyTesseract: A Python wrapper for the Tesseract OCR engine, which enables optical character recognition (OCR) capabilities for converting scanned images or PDFs to text.
-- NLTK: The Natural Language Toolkit (NLTK) is a Python library for working with human language data, providing tools for text processing, tokenization, parsing, classification, etc.
-- spaCy: A fast and modern Python library for natural language processing (NLP), offering pretrained models and extensive functionality for NLP tasks such as text tokenization, part-of-speech tagging, named entity recognition, etc.
-- Gensim: A Python library specialized in topic modeling and document similarity analysis, which allows efficient large-scale text processing using algorithms like Word2Vec, FastText, Latent Semantic Analysis (LSA), etc.
-- TextBlob: A simple Python library for processing textual data, offering basic NLP features such as part-of-speech tagging, noun phrase extraction, sentiment analysis, translation, etc.
-- Sumy: A Python library that provides functionality to summarize texts using various algorithms, extracting key information from long articles or documents.
-- Scikit-learn: A popular Python library for machine learning and data science, offering tools for preprocessing data, training algorithms, evaluating model performance, etc.
-- Transformers (Hugging Face): A Python library for state-of-the-art natural language processing (NLP), based on transformer model architectures like BERT and GPT-3. It offers pre-trained models for tasks like text generation, question-answering (QA), sentiment analysis (SA), etc.
-- OpenAI API - Whisper: An API service provided by OpenAI that offers an automatic speech recognition (ASR) system called Whisper. It transcribes spoken language audio data to written text with high accuracy. It requires an OpenAI API key to use.
+| Library | Description |
+| --- | --- |
+| textblob | Natural language processing library that provides a simple API for common NLP tasks such as sentiment analysis and text classification. |
+| feature_extraction | Library for extracting features from text data. |
+| text_preprocessing | Library for preprocessing text data, such as cleaning and tokenizing. |
+| sys | Library for interacting with the Python runtime system. |
+| sklearn | Machine learning library that provides a wide range of supervised and unsupervised learning algorithms. |
+| torch | Machine learning library that provides a fast and flexible deep learning framework. |
+| spacy | Natural language processing library that provides a high-performance statistical NLP engine. |
+| csv | Library for reading and writing CSV files. |
+| gensim | Natural language processing library that provides a number of tools for working with large-scale text corpora. |
+| thefuzz | Library for fuzzy string matching. |
+| threading | Library for creating and managing threads. |
+| transformers | Library for natural language processing that provides a number of pre-trained models for tasks such as text classification and question answering. |
+| numpy | Library for scientific computing that provides a high-performance multidimensional array object. |
+| chardet | Library for detecting the encoding of a text file. |
+| stanza | Natural language processing library that provides a high-performance statistical NLP engine for the Turkish language. |
+| glob | Library for finding files that match a pattern. |
+| google_auth_oauthlib | Library for authenticating with Google APIs. |
+| pdf2image | Library for converting PDF files to images. |
+| sumy | Library for summarizing text documents. |
+| info_extraction | Library for extracting information from text documents, such as entities, dates, and keywords. |
+| time | Library for getting the current time and date. |
+| warnings | Library for handling warnings. |
+| flair | Natural language processing library that provides a number of pre-trained models for tasks such as sentiment analysis and named entity recognition. |
+| vaderSentiment | Library for sentiment analysis. |
+| concurrent | Library for managing concurrent execution of tasks. |
+| google | Library for interacting with Google APIs. |
+| fuzzywuzzy | Library for fuzzy string matching. |
+| file_utils | Library for working with files. |
+| PyPDF4 | Library for reading and writing PDF files. |
+| re | Library for regular expressions. |
+| os | Library for interacting with the operating system. |
+| openai | Library for interacting with OpenAI APIs. |
+| base64 | Library for encoding and decoding binary data in base64 format. |
+| nltk | Natural language processing library that provides a wide range of NLP tools and resources. |
+| pandas | Library for data analysis and manipulation. |
+| similarity_clustering | Library for clustering and finding similar items in a dataset. |
+| functools | Library for providing higher-order functions and other tools for working with functions. |
+| requests | Library for making HTTP requests. |
+| googleapiclient | Library for interacting with Google APIs. |
+| rake_nltk | Library for natural language processing that provides a number of tools for extracting keywords from text. |
+| subprocess | Library for launching subprocesses. |
+| fitz | Library for working with PDF files. |
+| pytesseract | Library for optical character recognition. |
+| collections | Library for providing a number of container data types, such as lists, sets, and dictionaries.
+
 
 You can use pip to install the required packages in your Python environment:
 ```
-pip install pymupdf pdf2image pytesseract nltk spacy gensim textblob sumy scikit-learn transformers openai os
+pip install textblob feature_extraction text_preprocessing sys sklearn torch spacy csv gensim thefuzz threading transformers numpy chardet stanza glob google_auth_oauthlib pdf2image sumy info_extraction time warnings flair vaderSentiment concurrent google fuzzywuzzy file_utils PyPDF4 re os openai base64 nltk pandas similarity_clustering functools requests googleapiclient rake_nltk subprocess fitz pytesseract collections
 ```
 You also need to download the necessary language model for spaCy:
 ```
