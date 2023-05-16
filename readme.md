@@ -12,7 +12,11 @@ Document Intelligence is a document intelligence proof of concept that is design
 The project consists of several Python scripts that accomplish different tasks, including OCR processing, named entity recognition, similarity clustering, sentiment analysis, text summarization, audio transcription, email extraction, key-value pair extraction, and classification.
 
 ### Installation / How to setup
-To run this project, you need to have Python 3.x installed on your system. You also need to install the following libraries and tools:
+
+You can use pip to install the required packages in your Python environment:
+```
+pip install textblob feature_extraction text_preprocessing sys sklearn torch spacy csv gensim thefuzz threading transformers numpy chardet stanza glob google_auth_oauthlib pdf2image sumy info_extraction time warnings flair vaderSentiment concurrent google fuzzywuzzy file_utils PyPDF4 re os openai base64 nltk pandas similarity_clustering functools requests googleapiclient rake_nltk subprocess fitz pytesseract collections
+```
 
 | Library | Description |
 | --- | --- |
@@ -62,10 +66,6 @@ To run this project, you need to have Python 3.x installed on your system. You a
 | collections | Library for providing a number of container data types, such as lists, sets, and dictionaries.
 
 
-You can use pip to install the required packages in your Python environment:
-```
-pip install textblob feature_extraction text_preprocessing sys sklearn torch spacy csv gensim thefuzz threading transformers numpy chardet stanza glob google_auth_oauthlib pdf2image sumy info_extraction time warnings flair vaderSentiment concurrent google fuzzywuzzy file_utils PyPDF4 re os openai base64 nltk pandas similarity_clustering functools requests googleapiclient rake_nltk subprocess fitz pytesseract collections
-```
 You also need to download the necessary language model for spaCy:
 ```
 python -m spacy download en_core_web_sm
