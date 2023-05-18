@@ -2,10 +2,10 @@ import os
 import manage_files
 import preprocess_text
 import extract_features_from_text
-import cluster_documents_based_on_similarity
 import extract_information_from_text
 import sys
 import subprocess
+import json
 
 directory_path = "c:/python/autoindex/txt_output"
 
@@ -26,11 +26,18 @@ def main():
         tokens = preprocess_text.preprocess_text(content)
         vector = extract_features_from_text.vectorize_text(tokens)
         if vector is not None:
-            processed_texts.append(vector)
+            processed_texts.append(vector.tolist()) # Convert numpy array to list
             file_names.append(os.path.basename(file_path))
 
     # Call categorize_files from cluster_documents_based_on_similarity
-    cluster_documents_based_on_similarity.categorize_files(directory_path, processed_texts, file_names, original_texts)
+    # Save the arguments to a temporary file
+    args = [directory_path, processed_texts, file_names, original_texts]
+    temp_file = "temp_args.json"
+    with open(temp_file, "w") as f:
+        json.dump(args, f)
+    
+    # Pass the file name to the subprocess call
+    subprocess.call(['python', 'cluster_documents_based_on_similarity.py', temp_file])
 
     subprocess.call(['python', 'extract_text_from_audio.py'])  
     print("Transcribing Audio Files to Text...")
