@@ -10,10 +10,10 @@ import json
 directory_path = "c:/python/autoindex/txt_output"
 
 def main():
-    # running autoextractpdf2text.py
+    # Extracting text from pdf
     subprocess.call(['python', 'extract_text_from_pdf.py'])
     
-    # running autoocr_parallel.py
+    # Running OCR on non searchable pdfs
     subprocess.call(['python', 'optical_character_recognition.py'])
 
     txt_files = manage_files.get_txt_files(directory_path)
