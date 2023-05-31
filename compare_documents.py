@@ -1,6 +1,6 @@
 import os
 import requests
-from sklearn.extract_features_from_text.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 vectorizer = TfidfVectorizer()
