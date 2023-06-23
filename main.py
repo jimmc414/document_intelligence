@@ -11,10 +11,11 @@ directory_path = "c:/python/autoindex/txt_output"
 
 def main():
     # Extracting text from pdf
-    subprocess.call(['python', 'extract_text_from_pdf.py'])
-    
+    extracted_files = subprocess.check_output(['python', 'extract_text_from_pdf.py'])
+    extracted_files = extracted_files.decode("utf-8").splitlines()
+
     # Running OCR on non searchable pdfs
-    subprocess.call(['python', 'optical_character_recognition.py'])
+    subprocess.call(['python', 'optical_character_recognition.py'] + extracted_files)
 
     txt_files = manage_files.get_txt_files(directory_path)
     processed_texts = []
@@ -37,24 +38,24 @@ def main():
         json.dump(args, f)
     
     # Pass the file name to the subprocess call
-    subprocess.call(['python', 'cluster_documents_based_on_similarity.py', temp_file])
+    # subprocess.call(['python', 'cluster_documents_based_on_similarity.py', temp_file])
 
-    subprocess.call(['python', 'extract_text_from_audio.py'])  
+    # subprocess.call(['python', 'extract_text_from_audio.py'])  
     print("Transcribing Audio Files to Text...")
-    subprocess.call(['python', 'download_email.py'])
+    # subprocess.call(['python', 'download_email.py'])
     print("Extracting emails to Text")
-    subprocess.call(['python', 'extract_text_from_document.py'])  
+    # subprocess.call(['python', 'extract_text_from_document.py'])  
     print("Extracting Named Entities...")
-    subprocess.call(['python', 'extract_key_value_pairs.py'])  
+    # subprocess.call(['python', 'extract_key_value_pairs.py'])  
     print("Extracting Key / Value Pairs...")
-    subprocess.call(['python', 'extract_named_entities.py'])  
+    # subprocess.call(['python', 'extract_named_entities.py'])  
     print("Performing Sentiment Analysis...")
-    subprocess.call(['python', 'sentiment_analysis.py'])
+    # subprocess.call(['python', 'sentiment_analysis.py'])
     print("Performing Summarization...")
-    subprocess.call(['python', 'summarize_text.py'])
+    # subprocess.call(['python', 'summarize_text.py'])
     print("Performing Classification...")
-    subprocess.call(['python', 'cluster_documents.py'])
-    
+    # subprocess.call(['python', 'cluster_documents.py'])
+    # subprocess.call(['python', 'fuzzy_categorize_documents.py'])
 
 if __name__ == "__main__":
     main()

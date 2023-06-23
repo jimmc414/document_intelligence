@@ -1,14 +1,18 @@
 import os
+import cv2
 import PyPDF4
 import pytesseract
 import warnings
 import time
 import sys
+import numpy as np
 from pdf2image import convert_from_path
 from PyPDF4.utils import PdfReadWarning
 from concurrent.futures import ThreadPoolExecutor
 from functools import wraps
 from threading import Thread
+from scipy.ndimage import interpolation as inter
+from PIL import Image
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
@@ -24,6 +28,28 @@ def is_searchable(pdf_path):
             pass
     return False
 
+def deskew(image):
+    image = np.array(image)
+    image = image[:, :, ::-1].copy()  # Convert to BGR
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    gray = cv2.bitwise_not(gray)
+    thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
+
+    coords = np.column_stack(np.where(thresh > 0))
+    angle = cv2.minAreaRect(coords)[-1]
+
+    if angle < -45:
+        angle = -(90 + angle)
+    else:
+        angle = -angle
+
+    (h, w) = image.shape[:2]
+    center = (w // 2, h // 2)
+    M = cv2.getRotationMatrix2D(center, angle, 1.0)
+    rotated = cv2.warpAffine(image, M, (w, h), flags=cv2.INTER_CUBIC, borderMode=cv2.BORDER_REPLICATE)
+
+    return Image.fromarray(rotated[:, :, ::-1].copy())  # Convert back to RGB and return as PIL Image
+
 def ocr_pdf(pdf_path):
     print(f"{time.ctime()}: starting OCR {os.path.basename(pdf_path)}")
     output_folder = r"c:\python\autoindex\txt_output"
@@ -33,10 +59,10 @@ def ocr_pdf(pdf_path):
     images = convert_from_path(pdf_path)
     result = []
     
-    # modify the whitelist to include the $ symbol
     custom_config = r'–psm 6 --oem 1'
     for image in images:
-        text = pytesseract.image_to_string(image, config=custom_config)
+        deskewed_image = deskew(image)
+        text = pytesseract.image_to_string(deskewed_image, config=custom_config)
         result.append(text)
     
     with open(output_path, 'w', encoding='utf-8') as outfile:
@@ -65,7 +91,7 @@ def timeout(seconds):
         return wrapper
     return decorator
 
-@timeout(180)  # Set a timeout of 3 minutes (180 seconds) for each PDF
+@timeout(1000)  # Set a timeout of 3 minutes (180 seconds) for each PDF
 def process_pdf(file):
     pdf_path = os.path.join(input_folder, file)
     try:
@@ -82,7 +108,13 @@ def main():
     global input_folder
     input_folder = r'C:\python\autoindex\documents'
     pdf_files = [f for f in os.listdir(input_folder) if f.endswith('.pdf') and not f.endswith('_OCR.pdf')]
-    
+
+    # Get the list of files that have already been extracted from main.py
+    already_extracted_files = sys.argv[1:]
+
+    # Remove already extracted files from the list of files to process
+    pdf_files = [file for file in pdf_files if os.path.join(input_folder, file) not in already_extracted_files]
+
     num_cores = os.cpu_count() or 1
     with ThreadPoolExecutor(max_workers=num_cores) as executor:
         try:
