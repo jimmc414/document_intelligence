@@ -29,7 +29,7 @@ for file in os.listdir(folder_path):
 corpus.insert(0, input_text)
 
 # Vectorize texts using Tf-idf
-vectorizer = TfidfVectorizer()
+vectorizer = TfidfVectorizer(stop_words='english', token_pattern=r'\b[a-zA-Z]+\b')
 tfidf_matrix = vectorizer.fit_transform(corpus)
 
 # Calculate cosine similarity between input file and each text document
