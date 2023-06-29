@@ -10,12 +10,14 @@ import json
 directory_path = "c:/python/autoindex/txt_output"
 
 def main():
-    # Extracting text from pdf
-    extracted_files = subprocess.check_output(['python', 'extract_text_from_pdf.py'])
-    extracted_files = extracted_files.decode("utf-8").splitlines()
+    # Get all PDF files
+    all_files = [f for f in os.listdir("c:/python/autoindex/documents") if f.lower().endswith(".pdf")]
 
-    # Running OCR on non searchable pdfs
-    subprocess.call(['python', 'optical_character_recognition.py'] + extracted_files)
+    # Running OCR on all pdfs
+    chunk_size = 100
+    for i in range(0, len(all_files), chunk_size):
+        chunk = all_files[i:i+chunk_size]
+        subprocess.call(['python', 'optical_character_recognition.py'] + chunk)
 
     txt_files = manage_files.get_txt_files(directory_path)
     processed_texts = []

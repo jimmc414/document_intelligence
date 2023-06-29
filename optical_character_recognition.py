@@ -95,25 +95,19 @@ def timeout(seconds):
 def process_pdf(file):
     pdf_path = os.path.join(input_folder, file)
     try:
-        if not is_searchable(pdf_path):
-            ocr_pdf(pdf_path)
+        # if not is_searchable(pdf_path):
+        ocr_pdf(pdf_path)
     except PyPDF4.utils.PdfReadError:
-        print(f"Warning: Could not read the malformed PDF file: {os.path.basename(pdf_path)}")
+        logging.error(f"Could not read the malformed PDF file: {os.path.basename(pdf_path)}")
     except KeyError as e:
-        print(f"Warning: KeyError '{e}' encountered while processing {os.path.basename(pdf_path)}. Skipping the file.")
+        logging.error(f"KeyError '{e}' encountered while processing {os.path.basename(pdf_path)}. Skipping the file.")
     except Exception as e:
-        print(f"Unexpected error: {str(e)} while processing {os.path.basename(pdf_path)}")
+        logging.error(f"Unexpected error: {str(e)} while processing {os.path.basename(pdf_path)}")
 
 def main():
     global input_folder
     input_folder = r'C:\python\autoindex\documents'
-    pdf_files = [f for f in os.listdir(input_folder) if f.endswith('.pdf') and not f.endswith('_OCR.pdf')]
-
-    # Get the list of files that have already been extracted from main.py
-    already_extracted_files = sys.argv[1:]
-
-    # Remove already extracted files from the list of files to process
-    pdf_files = [file for file in pdf_files if os.path.join(input_folder, file) not in already_extracted_files]
+    pdf_files = sys.argv[1:]
 
     num_cores = os.cpu_count() or 1
     with ThreadPoolExecutor(max_workers=num_cores) as executor:
