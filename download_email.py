@@ -10,7 +10,7 @@ cred_file = 'credentials.json'
 
 # Email search criteria
 to_criteria = '*'
-from_criteria = 'jimmc414@gmail.com'
+from_criteria = 'jim.mcmillan@indexai.io'
 subject_criteria = '*'
 start_date = '2023/05/09'
 end_date = '2023/06/01'
