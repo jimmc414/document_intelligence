@@ -1,10 +1,3 @@
-
-"A business is simply an idea to make other people's lives better."
-
-—Sir Richard Branson
-
----
-
 # Document Intelligence: Document Text Analysis and Artificial Intelligence Processing
 ### Description
 Document Intelligence is a document intelligence proof of concept that is designed to automatically process and analyze PDF files, emails and call recordings. It extracts relevant information, analyzes sentiment, clusters and categorizes documents based on similarity, and generates summaries. The information is used to automatically assign the correct account number to an external system. The project aims to automatically digest unstructured documents, such as phone calls and texts, and generate metadata indexes for the correct account in a remote system. The objective is for this process to occur end-to-end, from an unknown document to being correctly filed, without human intervention.
@@ -207,9 +200,11 @@ compare_documents.py: A program that performs the following functions:
 - Write the similarity score to a CSV file
 - Called by: main.py or as standalone program
 
-extract_features_from_text.py: A module that defines some functions for extracting features from text data, such as TF-IDF vectors, word embeddings, and document embeddings.
+extract_features_from_text.py: 
+- A module that defines some functions for extracting features from text data, such as TF-IDF vectors, word embeddings, and document embeddings.
 
-manage_files.py: A module that defines some functions for working with files, such as reading, writing, deleting, moving, and renaming files.
+manage_files.py: 
+- A module that defines some functions for working with files, such as reading, writing, deleting, moving, and renaming files.
 
 sentiment_analysis_using_flair.py: A program that performs the following functions:
 - Get a text file as an input argument
@@ -241,7 +236,8 @@ sentiment_analysis_using_huggingface.py: A program that performs the following f
 - Write the predicted sentiment to a CSV file
 - Called by: main.py or as standalone program
 
-extract_information_from_text.py: A module that defines some functions for extracting information from text data, such as entities, dates, keywords, and key-value pairs.
+extract_information_from_text.py: 
+- A module that defines some functions for extracting information from text data, such as entities, dates, keywords, and key-value pairs.
 
 main.py: The main program that calls other programs and performs the following functions:
 - Get the input directory and output file name from the command-line arguments
@@ -285,7 +281,8 @@ cluster_documents_based_on_similarity.py: A program that performs the following 
 - Write the cluster labels to a CSV file
 - Called by: main.py or as standalone program
 
-preprocess_text.py: A module that defines some functions for preprocessing text data, such as cleaning, tokenizing, lemmatizing, and vectorizing.
+preprocess_text.py: 
+- A module that defines some functions for preprocessing text data, such as cleaning, tokenizing, lemmatizing, and vectorizing.
 
 create_topic_model.py: A program that performs the following functions:
 - Get a text file as an input argument
