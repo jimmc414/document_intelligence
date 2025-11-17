@@ -6,6 +6,8 @@ import warnings
 import time
 import sys
 import numpy as np
+import logging
+import shutil
 from pdf2image import convert_from_path
 from PyPDF4.utils import PdfReadWarning
 from concurrent.futures import ThreadPoolExecutor
@@ -14,7 +16,19 @@ from threading import Thread
 from scipy.ndimage import interpolation as inter
 from PIL import Image
 
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+
+# Set tesseract command based on platform
+if sys.platform == 'win32':
+    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+else:
+    # On Linux/Mac, tesseract should be in PATH
+    tesseract_cmd = shutil.which('tesseract')
+    if tesseract_cmd:
+        pytesseract.pytesseract.tesseract_cmd = tesseract_cmd
+    else:
+        logging.warning("Tesseract not found in PATH. OCR may not work.")
 
 warnings.filterwarnings('ignore', category=PdfReadWarning)
 
@@ -50,16 +64,19 @@ def deskew(image):
 
     return Image.fromarray(rotated[:, :, ::-1].copy())  # Convert back to RGB and return as PIL Image
 
-def ocr_pdf(pdf_path):
+def ocr_pdf(pdf_path, output_folder=None):
     print(f"{time.ctime()}: starting OCR {os.path.basename(pdf_path)}")
-    output_folder = r"c:\python\autoindex\txt_output"
+    if output_folder is None:
+        output_folder = os.getenv("TXT_OUTPUT_DIR", "txt_output")
+    os.makedirs(output_folder, exist_ok=True)
+
     output_filename = os.path.splitext(os.path.basename(pdf_path))[0] + "_ocr.txt"
     output_path = os.path.join(output_folder, output_filename)
-    
+
     images = convert_from_path(pdf_path)
     result = []
-    
-    custom_config = r'–psm 6 --oem 1'
+
+    custom_config = r'--psm 6 --oem 1'
     for image in images:
         deskewed_image = deskew(image)
         text = pytesseract.image_to_string(deskewed_image, config=custom_config)
@@ -91,12 +108,12 @@ def timeout(seconds):
         return wrapper
     return decorator
 
-@timeout(1000)  # Set a timeout of 3 minutes (180 seconds) for each PDF
-def process_pdf(file):
+@timeout(1000)  # Set a timeout of 1000 seconds for each PDF
+def process_pdf(file, input_folder, output_folder=None):
     pdf_path = os.path.join(input_folder, file)
     try:
         # if not is_searchable(pdf_path):
-        ocr_pdf(pdf_path)
+        ocr_pdf(pdf_path, output_folder)
     except PyPDF4.utils.PdfReadError:
         logging.error(f"Could not read the malformed PDF file: {os.path.basename(pdf_path)}")
     except KeyError as e:
@@ -105,14 +122,18 @@ def process_pdf(file):
         logging.error(f"Unexpected error: {str(e)} while processing {os.path.basename(pdf_path)}")
 
 def main():
-    global input_folder
-    input_folder = r'C:\python\autoindex\documents'
+    input_folder = os.getenv("DOCUMENTS_DIR", "documents")
+    output_folder = os.getenv("TXT_OUTPUT_DIR", "txt_output")
     pdf_files = sys.argv[1:]
+
+    if not os.path.exists(input_folder):
+        logging.error(f"Input folder '{input_folder}' does not exist.")
+        return
 
     num_cores = os.cpu_count() or 1
     with ThreadPoolExecutor(max_workers=num_cores) as executor:
         try:
-            executor.map(process_pdf, pdf_files)
+            executor.map(lambda f: process_pdf(f, input_folder, output_folder), pdf_files)
         except Exception as e:
             print(f"Unexpected error: {str(e)}\n{sys.exc_info()}")
 

@@ -115,7 +115,8 @@ def categorize_files(input_directory, output_directory):
                 for key, value in extracted_values.items():
                     print(f"  {key}: {value}")
 
-input_directory = 'C:\\python\\autoindex\\txt_output'
-output_directory = 'C:\\python\\autoindex\\classification'
-categorize_files(input_directory, output_directory)
+if __name__ == "__main__":
+    input_directory = os.getenv('TXT_OUTPUT_DIR', 'txt_output')
+    output_directory = os.getenv('CLASSIFICATION_DIR', 'classification')
+    categorize_files(input_directory, output_directory)
 

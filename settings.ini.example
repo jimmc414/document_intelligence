@@ -1,0 +1,10 @@
+[paths]
+txt_documents = txt_output
+
+[similarity]
+similarity_threshold = 75.0
+
+[categories]
+# Define your categories here
+# Example: invoice = Invoice related documents
+# Example: receipt = Receipt related documents
