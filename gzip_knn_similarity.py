@@ -55,9 +55,9 @@ below_threshold = [item for item in distance_report if item[1] <= distance_thres
 
 # Custom function to print report
 def print_report(report, title):
-    report_output = title + "\\n"
+    report_output = title + "\n"
     for item in report:
-        report_output += f"{item[0]} - Distance Score: {item[1]}\\n"
+        report_output += f"{item[0]} - Distance Score: {item[1]}\n"
     return report_output
 
 # Print and write the filtered distance report to a file

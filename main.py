@@ -7,11 +7,22 @@ import sys
 import subprocess
 import json
 
-directory_path = "c:/python/autoindex/txt_output"
-
 def main():
+    # Get paths from environment or use defaults
+    documents_dir = os.getenv("DOCUMENTS_DIR", "documents")
+    directory_path = os.getenv("TXT_OUTPUT_DIR", "txt_output")
+
+    # Create directories if they don't exist
+    os.makedirs(documents_dir, exist_ok=True)
+    os.makedirs(directory_path, exist_ok=True)
+
+    # Check if documents directory exists and has files
+    if not os.path.exists(documents_dir):
+        print(f"Error: Documents directory '{documents_dir}' does not exist.")
+        return
+
     # Get all PDF files
-    all_files = [f for f in os.listdir("c:/python/autoindex/documents") if f.lower().endswith(".pdf")]
+    all_files = [f for f in os.listdir(documents_dir) if f.lower().endswith(".pdf")]
 
     # Running OCR on all pdfs
     chunk_size = 100
