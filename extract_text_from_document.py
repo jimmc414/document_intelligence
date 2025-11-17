@@ -18,10 +18,14 @@ def extract_pattern(pattern, directory):
     return extracted_data
 
 if __name__ == "__main__":
-    input_path = "C:\\python\\autoindex\\txt_output"
-    output_path = "C:\\python\\autoindex\\extract"
+    input_path = os.getenv("TXT_OUTPUT_DIR", "txt_output")
+    output_path = os.getenv("EXTRACT_DIR", "extract")
 
     os.makedirs(output_path, exist_ok=True)
+
+    if not os.path.exists(input_path):
+        print(f"Error: Input directory '{input_path}' does not exist.")
+        exit(1)
 
     # Define patterns
     social_sec_pattern = r"\b\d{3}-\d{2}-\d{4}\b|^\d{9}$"

@@ -34,17 +34,20 @@ def sentiment_analysis(input_path, output_path):
         output_file.write(f"Subjectivity: {sentiment.subjectivity} ({subjectivity_interpretation})\n")
 
 if __name__ == "__main__":
-    input_directory = "c:\\python\\autoindex\\txt_output"
-    output_directory = "c:\\python\\autoindex\\sentiments"
+    input_directory = os.getenv("TXT_OUTPUT_DIR", "txt_output")
+    output_directory = os.getenv("SENTIMENTS_DIR", "sentiments")
     os.makedirs(output_directory, exist_ok=True)
 
-    for root, dirs, files in os.walk(input_directory):
-        for file in files:
-            if file.lower().endswith(".txt"):
-                input_file_path = os.path.join(root, file)
-                output_file_path = os.path.join(
-                    output_directory, os.path.splitext(file)[0] + "_sentiment.txt"
-                )
-                print(f"Performing sentiment analysis on {file}...")
-                sentiment_analysis(input_file_path, output_file_path)
-                print(f"Sentiment analysis complete for {file}. Results saved in {os.path.basename(output_file_path)}.\n")
+    if not os.path.exists(input_directory):
+        print(f"Error: Input directory '{input_directory}' does not exist.")
+    else:
+        for root, dirs, files in os.walk(input_directory):
+            for file in files:
+                if file.lower().endswith(".txt"):
+                    input_file_path = os.path.join(root, file)
+                    output_file_path = os.path.join(
+                        output_directory, os.path.splitext(file)[0] + "_sentiment.txt"
+                    )
+                    print(f"Performing sentiment analysis on {file}...")
+                    sentiment_analysis(input_file_path, output_file_path)
+                    print(f"Sentiment analysis complete for {file}. Results saved in {os.path.basename(output_file_path)}.\n")
