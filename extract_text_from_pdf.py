@@ -27,10 +27,14 @@ def extract_text_from_pdf(file_path, output_path):
             output_file.write(text)
 
 if __name__ == "__main__":
-    source_directory = "C:\\python\\autoindex\\documents"
-    output_directory = "C:\\python\\autoindex\\txt_output"
+    source_directory = os.getenv("DOCUMENTS_DIR", "documents")
+    output_directory = os.getenv("TXT_OUTPUT_DIR", "txt_output")
 
     os.makedirs(output_directory, exist_ok=True)
+
+    if not os.path.exists(source_directory):
+        print(f"Error: Source directory '{source_directory}' does not exist.")
+        exit(1)
 
     extracted_files = []
     for root, dirs, files in os.walk(source_directory):
