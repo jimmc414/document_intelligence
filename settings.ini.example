@@ -1,0 +1,19 @@
+# Document Intelligence Settings Template
+# Copy this file to settings.ini and customize the values
+
+[paths]
+# Path to directory containing text documents
+txt_documents = txt_output
+
+[similarity]
+# Similarity threshold for fuzzy categorization (0-100)
+similarity_threshold = 70.0
+
+[categories]
+# Define your document categories with keywords
+# Format: category_name = keywords describing the category
+legal = legal document contract agreement terms conditions
+financial = financial invoice receipt payment transaction accounting
+technical = technical specification documentation manual guide
+medical = medical health patient diagnosis treatment prescription
+administrative = administrative memo policy procedure notice

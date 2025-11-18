@@ -54,46 +54,44 @@ def save_clusters(file_names, labels, path):
         with open(os.path.join(path, file_name), "w") as f:
             f.write(str(label))
 
-# Define some parameters
+def main():
+    # Define some parameters
+    input_path = os.path.join(os.getcwd(), "txt_output")  # input directory for text files
+    output_path = os.path.join(os.getcwd(), "category")  # output directory for cluster labels
+    n_components = 10  # number of topics to extract using LSA
+    n_clusters = 5  # number of clusters to form using K-means
+    n_top_words = 10  # number of top words to display for each cluster
 
-input_path = "C:\\python\\autoindex\\txt_output" # input directory for text files
-output_path = "C:\\python\\autoindex\\category" # output directory for cluster labels
-n_components = 10 # number of topics to extract using LSA
-n_clusters = 5 # number of clusters to form using K-means
-n_top_words = 10 # number of top words to display for each cluster
+    # Create output directory if it doesn't exist
+    os.makedirs(output_path, exist_ok=True)
 
-# Read the text files from the input directory
+    # Read the text files from the input directory
+    file_names, file_contents = read_files(input_path)
 
-file_names, file_contents = read_files(input_path)
+    # Create a pandas dataframe to store the file names and contents
+    data = pd.DataFrame({"file_name": file_names, "file_content": file_contents})
 
-# Create a pandas dataframe to store the file names and contents
+    # Preprocess the file contents
+    data["file_content"] = data["file_content"].apply(preprocess)
 
-data = pd.DataFrame({"file_name": file_names, "file_content": file_contents})
+    # Create a document-term matrix using TF-IDF vectorizer
+    vectorizer = TfidfVectorizer(max_features=1000)
+    X = vectorizer.fit_transform(data["file_content"])
 
-# Preprocess the file contents
+    # Apply LSA using truncated SVD to reduce the dimensionality and extract latent topics
+    svd = TruncatedSVD(n_components=n_components)
+    X_topics = svd.fit_transform(X)
 
-data["file_content"] = data["file_content"].apply(preprocess)
+    # Cluster the documents based on their topic scores using K-means
+    km = KMeans(n_clusters=n_clusters, random_state=0)
+    km.fit(X_topics)
 
-# Create a document-term matrix using TF-IDF vectorizer
+    # Print the cluster labels and the top words for each cluster to the console
+    feature_names = vectorizer.get_feature_names_out()
+    print_clusters(km, feature_names, n_top_words)
 
-vectorizer = TfidfVectorizer(max_features=1000)
-X = vectorizer.fit_transform(data["file_content"])
+    # Save the cluster labels to a text file with the same filename in the output directory
+    save_clusters(data["file_name"], km.labels_, output_path)
 
-# Apply LSA using truncated SVD to reduce the dimensionality and extract latent topics
-
-svd = TruncatedSVD(n_components=n_components)
-X_topics = svd.fit_transform(X)
-
-# Cluster the documents based on their topic scores using K-means
-
-km = KMeans(n_clusters=n_clusters, random_state=0)
-km.fit(X_topics)
-
-# Print the cluster labels and the top words for each cluster to the console
-
-feature_names = vectorizer.get_feature_names_out()
-print_clusters(km, feature_names, n_top_words)
-
-# Save the cluster labels to a text file with the same filename in the output directory
-
-save_clusters(data["file_name"], km.labels_, output_path)
+if __name__ == "__main__":
+    main()

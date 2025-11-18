@@ -16,9 +16,15 @@ start_date = '2023/05/09'
 end_date = '2023/06/01'
 
 # Output directory
-output_directory = 'C:/python/autoindex/txt_output/'
+output_directory = os.path.join(os.getcwd(), 'txt_output')
 
 def authenticate():
+    if not os.path.exists(cred_file):
+        raise FileNotFoundError(
+            f"Credentials file '{cred_file}' not found. "
+            "Please download it from Google Cloud Console and place it in the project directory. "
+            "See README.md for instructions."
+        )
     scopes = ['https://www.googleapis.com/auth/gmail.readonly']
     flow = InstalledAppFlow.from_client_secrets_file(cred_file, scopes)
     creds = flow.run_local_server(port=0)

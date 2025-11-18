@@ -35,19 +35,42 @@ def get_document_similarity(document1, document2):
 
 def main():
   # Define document 1 at runtime.
-  document1 = input("Enter the path and filename of the file to compare to: ")
+  document1_path = input("Enter the path and filename of the file to compare to: ")
 
-  # Iterate through the txt files in C:\python\autoindex\txt_output.
-  for filename in os.listdir("C:\\python\\autoindex\\txt_output"):
+  # Read the content of document1
+  with open(document1_path, 'r', encoding='utf-8') as f:
+    document1_content = f.read()
+
+  # Define paths
+  txt_output_dir = os.path.join(os.getcwd(), "txt_output")
+
+  # Store all similarity scores for ranking
+  all_scores = []
+
+  # Iterate through the txt files
+  for filename in os.listdir(txt_output_dir):
+    if not filename.endswith(".txt"):
+      continue
+
+    file_path = os.path.join(txt_output_dir, filename)
+
+    # Read the content of the file
+    with open(file_path, 'r', encoding='utf-8') as f:
+      document2_content = f.read()
+
     # Calculate the similarity score.
-    similarity_score = get_document_similarity(document1, filename)
+    similarity_score = get_document_similarity(document1_content, document2_content)
 
-    # Rank the results in descending order of similarity.
-    similarity_scores = [similarity_score]
-    similarity_scores.sort(reverse=True)
+    # Store the result
+    all_scores.append((filename, similarity_score[0][0]))
 
-    # Print the similarity score.
-    print(f"The similarity score between document 1 and document {filename} is {similarity_score}")
+  # Sort by similarity score in descending order
+  all_scores.sort(key=lambda x: x[1], reverse=True)
+
+  # Print the similarity scores
+  print("\nSimilarity scores (ranked):")
+  for filename, score in all_scores:
+    print(f"{filename}: {score:.4f}")
 
 if __name__ == "__main__":
   main()

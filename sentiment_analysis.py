@@ -34,8 +34,8 @@ def sentiment_analysis(input_path, output_path):
         output_file.write(f"Subjectivity: {sentiment.subjectivity} ({subjectivity_interpretation})\n")
 
 if __name__ == "__main__":
-    input_directory = "c:\\python\\autoindex\\txt_output"
-    output_directory = "c:\\python\\autoindex\\sentiments"
+    input_directory = os.path.join(os.getcwd(), "txt_output")
+    output_directory = os.path.join(os.getcwd(), "sentiments")
     os.makedirs(output_directory, exist_ok=True)
 
     for root, dirs, files in os.walk(input_directory):

@@ -30,18 +30,30 @@ def get_document_classification(document):
   return prediction
 
 def main():
-  # Iterate through the txt files in C:\python\autoindex\txt_output.
-  for filename in os.listdir("C:\\python\\autoindex\\txt_output"):
+  # Define paths
+  input_dir = os.path.join(os.getcwd(), "txt_output")
+  output_dir = os.path.join(os.getcwd(), "document_classification")
+
+  # Create output directory if it doesn't exist
+  os.makedirs(output_dir, exist_ok=True)
+
+  # Iterate through the txt files
+  for filename in os.listdir(input_dir):
+    if not filename.endswith(".txt"):
+      continue
+
     # Read the file.
-    with open(f"C:\\python\\autoindex\\txt_output\\{filename}", "r") as f:
+    input_path = os.path.join(input_dir, filename)
+    with open(input_path, "r") as f:
       document = f.read()
 
     # Classify the document.
     prediction = get_document_classification(document)
 
-    # Write the classification to a file.
-    with open(f"C:\\python\\autoindex\\document_classification\\{filename}", "w") as f:
-      f.write(prediction)
+    # Write the classification to a file (convert numpy array to string).
+    output_path = os.path.join(output_dir, filename)
+    with open(output_path, "w") as f:
+      f.write(str(prediction[0]))
 
 if __name__ == "__main__":
   main()
