@@ -5,6 +5,7 @@ import pytesseract
 import warnings
 import time
 import sys
+import logging
 import numpy as np
 from pdf2image import convert_from_path
 from PyPDF4.utils import PdfReadWarning
@@ -13,8 +14,15 @@ from functools import wraps
 from threading import Thread
 from scipy.ndimage import interpolation as inter
 from PIL import Image
+import platform
 
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+# Set tesseract path based on platform
+if platform.system() == 'Windows':
+    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+# On Linux/Mac, tesseract should be in PATH
 
 warnings.filterwarnings('ignore', category=PdfReadWarning)
 
@@ -50,16 +58,18 @@ def deskew(image):
 
     return Image.fromarray(rotated[:, :, ::-1].copy())  # Convert back to RGB and return as PIL Image
 
-def ocr_pdf(pdf_path):
+def ocr_pdf(pdf_path, output_folder=None):
     print(f"{time.ctime()}: starting OCR {os.path.basename(pdf_path)}")
-    output_folder = r"c:\python\autoindex\txt_output"
+    if output_folder is None:
+        output_folder = os.path.join(os.getcwd(), "txt_output")
+    os.makedirs(output_folder, exist_ok=True)
     output_filename = os.path.splitext(os.path.basename(pdf_path))[0] + "_ocr.txt"
     output_path = os.path.join(output_folder, output_filename)
-    
+
     images = convert_from_path(pdf_path)
     result = []
-    
-    custom_config = r'–psm 6 --oem 1'
+
+    custom_config = r'--psm 6 --oem 1'
     for image in images:
         deskewed_image = deskew(image)
         text = pytesseract.image_to_string(deskewed_image, config=custom_config)
@@ -106,7 +116,7 @@ def process_pdf(file):
 
 def main():
     global input_folder
-    input_folder = r'C:\python\autoindex\documents'
+    input_folder = os.path.join(os.getcwd(), "documents")
     pdf_files = sys.argv[1:]
 
     num_cores = os.cpu_count() or 1

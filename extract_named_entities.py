@@ -46,84 +46,91 @@ custom_name_pattern = [
 ruler = nlp.add_pipe("entity_ruler")
 ruler.add_patterns(custom_name_pattern)
 
-# Set the directory paths
-input_dir = "C:\\python\\autoindex\\txt_output"
-output_dir = "C:\\python\\autoindex\\NER"
+def main():
+    # Set the directory paths
+    input_dir = os.path.join(os.getcwd(), "txt_output")
+    output_dir = os.path.join(os.getcwd(), "NER")
 
-# Define patterns for case numbers and account numbers
-case_pattern = r'\bCASE-\d{4}-\d{3}\b'  # Sample pattern for case numbers
-account_pattern = r'\bACCN\d{5}\b'  # Sample pattern for account numbers
+    # Create output directory if it doesn't exist
+    os.makedirs(output_dir, exist_ok=True)
 
-# Define a list of legal terms
-legal_terms = ["Plaintiff", "Defendant", "Claim", "Relief", "Negligence"]
+    # Define patterns for case numbers and account numbers
+    case_pattern = r'\bCASE-\d{4}-\d{3}\b'  # Sample pattern for case numbers
+    account_pattern = r'\bACCN\d{5}\b'  # Sample pattern for account numbers
 
-# Iterate through txt files in the input directory
-for filename in os.listdir(input_dir):
-    if filename.endswith(".txt"):
-        filepath = os.path.join(input_dir, filename)
+    # Define a list of legal terms
+    legal_terms = ["Plaintiff", "Defendant", "Claim", "Relief", "Negligence"]
 
-        # Load the text from the txt file
-        with open(filepath, "r", encoding="utf-8") as file:
-            text = file.read()
+    # Iterate through txt files in the input directory
+    for filename in os.listdir(input_dir):
+        if filename.endswith(".txt"):
+            filepath = os.path.join(input_dir, filename)
 
-        # Process the text using spaCy
-        doc = nlp(text)
+            # Load the text from the txt file
+            with open(filepath, "r", encoding="utf-8") as file:
+                text = file.read()
 
-        # Extract only proper names
-        proper_names = extract_proper_names(doc)
+            # Process the text using spaCy
+            doc = nlp(text)
 
-        # Extract case numbers and account numbers
-        case_numbers, account_numbers = extract_identifiers(text, case_pattern, account_pattern)
+            # Extract only proper names
+            proper_names = extract_proper_names(doc)
 
-        # Extract legal terms
-        legal_term_matches = extract_legal_terms(doc, legal_terms)
+            # Extract case numbers and account numbers
+            case_numbers, account_numbers = extract_identifiers(text, case_pattern, account_pattern)
 
-        # Check if any identifiers were found for the file
-        if proper_names or case_numbers or account_numbers or legal_term_matches:
-            # Print identifiers for each document
-            print(f"Identifiers in {filename}:")
+            # Extract legal terms
+            legal_term_matches = extract_legal_terms(doc, legal_terms)
 
-            if proper_names:
-                print("Proper Names:")
-                for name in proper_names:
-                    print(name.text)
+            # Check if any identifiers were found for the file
+            if proper_names or case_numbers or account_numbers or legal_term_matches:
+                # Print identifiers for each document
+                print(f"Identifiers in {filename}:")
 
-            if case_numbers:
-                print("Case Numbers:")
-                for number in case_numbers:
-                    print(number)
-
-            if account_numbers:
-                print("Account Numbers:")
-                for number in account_numbers:
-                    print(number)
-
-            if legal_term_matches:
-                print("Legal Terms:")
-                for term in legal_term_matches:
-                    print(term)
-
-            output_filename = "NER_" + filename
-            output_filepath = os.path.join(output_dir, output_filename)
-
-            # Write the identifiers to the output file
-            with open(output_filepath, "w", encoding="utf-8") as output_file:
                 if proper_names:
-                    output_file.write("Proper Names:\n")
+                    print("Proper Names:")
                     for name in proper_names:
-                        output_file.write(name.text + "\n")
+                        print(name.text)
 
                 if case_numbers:
-                    output_file.write("\nCase Numbers:\n")
+                    print("Case Numbers:")
                     for number in case_numbers:
-                        output_file.write(number + "\n")
+                        print(number)
 
                 if account_numbers:
-                    output_file.write("\nAccount Numbers:\n")
+                    print("Account Numbers:")
                     for number in account_numbers:
-                        output_file.write(number + "\n")
+                        print(number)
 
                 if legal_term_matches:
-                    output_file.write("\nLegal Terms:\n")
+                    print("Legal Terms:")
                     for term in legal_term_matches:
-                        output_file.write(term + "\n")
+                        print(term)
+
+                output_filename = "NER_" + filename
+                output_filepath = os.path.join(output_dir, output_filename)
+
+                # Write the identifiers to the output file
+                with open(output_filepath, "w", encoding="utf-8") as output_file:
+                    if proper_names:
+                        output_file.write("Proper Names:\n")
+                        for name in proper_names:
+                            output_file.write(name.text + "\n")
+
+                    if case_numbers:
+                        output_file.write("\nCase Numbers:\n")
+                        for number in case_numbers:
+                            output_file.write(number + "\n")
+
+                    if account_numbers:
+                        output_file.write("\nAccount Numbers:\n")
+                        for number in account_numbers:
+                            output_file.write(number + "\n")
+
+                    if legal_term_matches:
+                        output_file.write("\nLegal Terms:\n")
+                        for term in legal_term_matches:
+                            output_file.write(term + "\n")
+
+if __name__ == "__main__":
+    main()

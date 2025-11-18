@@ -4,12 +4,26 @@ import configparser
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 
+# Read settings from ini file or use defaults
 config = configparser.ConfigParser()
-config.read("settings.ini")
-
-TXT_DOCUMENTS = config.get("paths", "txt_documents")
-SIMILARITY_THRESHOLD = config.getfloat("similarity", "similarity_threshold")
-CATEGORY_DEFINITIONS = dict(config.items("categories"))
+if os.path.exists("settings.ini"):
+    config.read("settings.ini")
+    TXT_DOCUMENTS = config.get("paths", "txt_documents")
+    SIMILARITY_THRESHOLD = config.getfloat("similarity", "similarity_threshold")
+    CATEGORY_DEFINITIONS = dict(config.items("categories"))
+else:
+    # Use defaults if settings.ini doesn't exist
+    print("Warning: settings.ini not found. Using default values.")
+    TXT_DOCUMENTS = os.path.join(os.getcwd(), "txt_output")
+    SIMILARITY_THRESHOLD = 70.0
+    CATEGORY_DEFINITIONS = {
+        "legal": "legal document contract agreement",
+        "financial": "financial invoice receipt payment",
+        "technical": "technical specification documentation"
+    }
+    print(f"Default path: {TXT_DOCUMENTS}")
+    print(f"Default similarity threshold: {SIMILARITY_THRESHOLD}")
+    print(f"Default categories: {list(CATEGORY_DEFINITIONS.keys())}")
 
 
 def extract_text_from_txt(file_path):

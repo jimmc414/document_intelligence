@@ -20,24 +20,28 @@ def create_summary(text, language="english", sentence_count=5):
     return summary
 
 
-input_dir = "c:\\python\\autoindex\\txt_output"
-output_dir = "c:\\python\\autoindex\\summarization"
+def main():
+    input_dir = os.path.join(os.getcwd(), "txt_output")
+    output_dir = os.path.join(os.getcwd(), "summarization")
 
-os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(output_dir, exist_ok=True)
 
-for filename in os.listdir(input_dir):
-    if filename.endswith(".txt"):
-        filepath = os.path.join(input_dir, filename)
+    for filename in os.listdir(input_dir):
+        if filename.endswith(".txt"):
+            filepath = os.path.join(input_dir, filename)
 
-        with open(filepath, "r", encoding="utf-8") as file:
-            text = file.read()
+            with open(filepath, "r", encoding="utf-8") as file:
+                text = file.read()
 
-        # Generate summary
-        summary = create_summary(text)
+            # Generate summary
+            summary = create_summary(text)
 
-        # Save the summary in the summarization folder
-        output_filename = "summary_" + filename
-        output_filepath = os.path.join(output_dir, output_filename)
+            # Save the summary in the summarization folder
+            output_filename = "summary_" + filename
+            output_filepath = os.path.join(output_dir, output_filename)
 
-        with open(output_filepath, "w", encoding="utf-8") as output_file:
-            output_file.write(summary)
+            with open(output_filepath, "w", encoding="utf-8") as output_file:
+                output_file.write(summary)
+
+if __name__ == "__main__":
+    main()

@@ -5,10 +5,15 @@ from nltk import word_tokenize
 from nltk.corpus import stopwords
 import configparser
 
-# Read settings from ini file
+# Read settings from ini file or use default
 config = configparser.ConfigParser()
-config.read('settings.ini')
-folder_path = config.get('paths', 'txt_documents')
+if os.path.exists('settings.ini'):
+    config.read('settings.ini')
+    folder_path = config.get('paths', 'txt_documents')
+else:
+    # Use default path if settings.ini doesn't exist
+    folder_path = os.path.join(os.getcwd(), 'txt_output')
+    print(f"Warning: settings.ini not found. Using default path: {folder_path}")
 
 # Prompt user for filename
 input_file = input("Enter the name of the text file: ")
@@ -55,9 +60,9 @@ below_threshold = [item for item in distance_report if item[1] <= distance_thres
 
 # Custom function to print report
 def print_report(report, title):
-    report_output = title + "\\n"
+    report_output = title + "\n"
     for item in report:
-        report_output += f"{item[0]} - Distance Score: {item[1]}\\n"
+        report_output += f"{item[0]} - Distance Score: {item[1]}\n"
     return report_output
 
 # Print and write the filtered distance report to a file

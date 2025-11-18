@@ -3,9 +3,6 @@ import sys
 import os
 from pathlib import Path
 
-input_folder = "c:\\python\\autoindex\\txt_output"
-output_folder = "c:\\python\\autoindex\\kvextract"
-
 def extract_data(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
@@ -58,4 +55,6 @@ def process_files(input_folder, output_folder):
                     f.write(f"{key}: {value}\n")
 
 if __name__ == "__main__":
+    input_folder = os.path.join(os.getcwd(), "txt_output")
+    output_folder = os.path.join(os.getcwd(), "kvextract")
     process_files(input_folder, output_folder)

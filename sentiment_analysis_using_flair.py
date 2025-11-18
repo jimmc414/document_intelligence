@@ -2,14 +2,23 @@ import os
 from flair.models import TextClassifier
 from flair.data import Sentence
 
-# Load the pre-trained sentiment analysis model
-model = TextClassifier.load('en-sentiment')
+# Cache for the model to avoid reloading
+_model = None
+
+def _get_model():
+    """Lazily load the Flair sentiment model only when needed."""
+    global _model
+    if _model is None:
+        print("Loading Flair sentiment model... (this may take a moment on first run)")
+        _model = TextClassifier.load('en-sentiment')
+    return _model
 
 def sentiment_analysis(text):
     # Create a Sentence object from input text
     sentence = Sentence(text)
 
     # Predict sentiment using the model
+    model = _get_model()
     model.predict(sentence)
 
     # Return label and score if it exists, otherwise return "Unknown"
@@ -33,10 +42,14 @@ def process_files(input_dir, output_dir):
             with open(output_file_path, "w", encoding="utf-8") as output_file:
                 output_file.write(results)
 
-input_dir = "c:\\python\\autoindex\\txt_output"
-output_dir = "c:\\python\\autoindex\\FL_sentiment"
-os.makedirs(output_dir, exist_ok=True)
-process_files(input_dir, output_dir)
+def main():
+    input_dir = os.path.join(os.getcwd(), "txt_output")
+    output_dir = os.path.join(os.getcwd(), "FL_sentiment")
+    os.makedirs(output_dir, exist_ok=True)
+    process_files(input_dir, output_dir)
+
+if __name__ == "__main__":
+    main()
 
 
 # To customize the Flair emotion classifier with your own data and labels, you can follow these steps:

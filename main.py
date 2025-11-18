@@ -7,11 +7,18 @@ import sys
 import subprocess
 import json
 
-directory_path = "c:/python/autoindex/txt_output"
-
 def main():
+    # Define base paths
+    base_dir = os.getcwd()
+    documents_dir = os.path.join(base_dir, "documents")
+    directory_path = os.path.join(base_dir, "txt_output")
+
+    # Create directories if they don't exist
+    os.makedirs(documents_dir, exist_ok=True)
+    os.makedirs(directory_path, exist_ok=True)
+
     # Get all PDF files
-    all_files = [f for f in os.listdir("c:/python/autoindex/documents") if f.lower().endswith(".pdf")]
+    all_files = [f for f in os.listdir(documents_dir) if f.lower().endswith(".pdf")]
 
     # Running OCR on all pdfs
     chunk_size = 100
